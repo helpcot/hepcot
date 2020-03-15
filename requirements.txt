@@ -1,0 +1,4 @@
+discord.py
+a1ohttp
+websockets
+chardet
