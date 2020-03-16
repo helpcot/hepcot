@@ -39,3 +39,21 @@ class MyClient(discord.Client):
 client = MyClient()
 token = os.environ.get('BOT_TOKEN')
 client.run(str(token))
+
+bot = commands.Bot(command_prefix='!')
+
+import os
+import discord
+from discord.ext import commands
+
+bot = commands.Bot(command_prefix='!')
+
+
+@bot.command(pass_context=True)  # разрешаем передавать агрументы
+async def test(ctx, arg):  # создаем асинхронную фунцию бота
+    await ctx.send(arg)  # отправляем обратно аргумент
+
+
+token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
+
+bot.run(str(token)) # запускаем бота
