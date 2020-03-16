@@ -1,4 +1,4 @@
-import discord
+import os
 from discord import utils
 import config
 class MyClient(discord.Client):
@@ -36,4 +36,5 @@ class MyClient(discord.Client):
         except Exception as e:
             print(repr(e))
 client = MyClient()
-client.run(config.TOKEN)
+token = os.environ.get('BOT_TOKEN')
+client.run(str(token))
