@@ -17,7 +17,7 @@ class Discord(commands.Cog):
 	async def kick_member(self, ctx, member: discord.Member = None, *, reason: str or int = "Не указана"):
 		time = datetime.now().strftime("%H:%M:%S")
 		embed = discord.Embed(description = f"Пользователь **{member.name}** был кикнут **{ctx.author.name}**. \nПричина: {reason}")
-		embed.set_author(name = "Пользователь был кикнут", icon_url = https://c7.hotpng.com/preview/920/130/329/emoji-wave-hand-thepix-sign-language-hand-emoji.jpg)
+		embed.set_author(name = "Пользователь был кикнут", icon_url = member.guild.icon_url)
 		embed.set_footer(text = f"Время: {time}")
 		await ctx.message.delete()
 		await member.kick(reason = reason)
