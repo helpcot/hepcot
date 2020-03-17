@@ -14,6 +14,7 @@ class Discord(commands.Cog):
 		print(f"Бот бы запущен в {time}")
 
 	@commands.command(name = "kick", aliases = ["k"])
+	@commands.has_permissions(administrator = True)
 	async def kick_member(self, ctx, member: discord.Member = None, *, reason: str or int = "Не указана"):
 		time = datetime.now().strftime("%H:%M:%S")
 		embed = discord.Embed(description = f"Пользователь **{member.name}** был кикнут **{ctx.author.name}**. \nПричина: {reason}")
