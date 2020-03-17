@@ -1,3 +1,5 @@
+import os
+
 PREFIX = "/" # Префикс бота
 
 TOKEN = os.environ.get('BOT_TOKEN')
