@@ -2,4 +2,4 @@ discord.py
 aiohttp
 websockets
 chardet
--U discord.py[voice]
+discord.py[voice]
