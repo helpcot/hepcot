@@ -61,6 +61,12 @@ class Discord(commands.Cog):
 			print(f"Ошибка, нету такого эмодзив базе: {emoji}")
 		except Exception as e:
 			print(repr(e))
+	
+	@client.command( pass_context = True )
+        @commands.has_permissions( administrator = True )
+
+        async def clear( ctx, amount = 100 ):
+	    await ctx.channel.purge( limit = amount )
 
 def setup(Bot):
 	Bot.add_cog(Discord(Bot))
