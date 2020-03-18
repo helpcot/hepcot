@@ -152,8 +152,6 @@ async def  leave(ctx):
  
 
 #Connect 
-token = open( 'token.txt', 'r' ).readline()
-
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 
 Bot.run(str(token)) # запускаем бота
