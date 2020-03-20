@@ -199,6 +199,15 @@ async def on_ready():
     print(client.user.id)
     print('Ready.')
     print('------------')
+
+@client.command( pass_context = True)
+@commands.has_permissions( administrator = True )	
+async def hello( ctx, amount = 1):
+	await ctx.channel.purge( limit = amount )
+
+	author = ctx.message.author
+	await ctx.send( f'Иди нахуй бомж ебаный { author.mention }')
+	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 
 client.run(str(token)) # запускаем бота
