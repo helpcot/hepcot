@@ -96,7 +96,9 @@ async def unban( ctx, *, member ):
 
 async def help( ctx ):
 	emb = discord.Embed( title = 'Навигация по командам' )
-
+	
+	emb.add_field( name = '{}pizda'.format( PREFIX ), value = 'Ещё один привет от бота' )
+	emb.add_field( name = '{}hello'.format( PREFIX ), value = 'Привет от бота' )
 	emb.add_field( name = '{}clear'.format( PREFIX ), value = 'Очистка чата' )
 	emb.add_field( name = '{}kick'.format( PREFIX ), value = 'Кик Участника' )
 	emb.add_field( name = '{}ban'.format( PREFIX ), value = 'Бан Участника' )
