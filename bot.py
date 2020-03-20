@@ -39,7 +39,7 @@ async def hello( ctx, amount = 1):
 	await ctx.channel.purge( limit = amount )
 
 	author = ctx.message.author
-	await ctx.send( f'Hello { author.mention }')
+	await ctx.send( f'Иди нахуй бомж ебаный { author.mention }')
 
 #Kick
 @client.command( pass_context = True )
