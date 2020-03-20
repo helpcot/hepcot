@@ -96,6 +96,7 @@ async def unban( ctx, *, member ):
 @commands.has_permissions( administrator = True )
 
 async def help( ctx ):
+emb = discord.Embed( title = 'Kick', colour = discord.Color.red() )
 	emb = discord.Embed( title = 'Навигация по командам' )
 	
 	emb.add_field( name = '{}pizda'.format( PREFIX ), value = 'Ещё один привет от бота' )
