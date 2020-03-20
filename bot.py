@@ -36,6 +36,7 @@ async def clear( ctx, amount = 100 ):
 @commands.has_permissions( administrator = True )
 	
 async def hello( ctx, amount = 1):
+	emb = discord.Embed( title = 'Kick', colour = discord.Color.green() )
 	await ctx.channel.purge( limit = amount )
 
 	author = ctx.message.author
