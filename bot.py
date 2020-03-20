@@ -2,11 +2,17 @@ import os
 import discord
 from discord.ext import commands
 import datetime
+import asyncio
+import random
 from discord.utils import get
 
 
 PREFIX = '/'
 
+colours = [discord.Color.dark_orange(),discord.Color.orange(),discord.Color.dark_gold(),discord.Color.gold(),discord.Color.dark_magenta(),discord.Color.magenta(),discord.Color.red(),discord.Color.dark_red(),discord.Color.blue(),discord.Color.dark_blue(),discord.Color.teal(),discord.Color.dark_teal(),discord.Color.green(),discord.Color.dark_green(),discord.Color.purple(),discord.Color.dark_purple()]
+delay = 1
+serverid = 689757267226394634
+rainbowrolename = "sex"
 client = commands.Bot( command_prefix = PREFIX )
 client.remove_command( 'help' )
 
@@ -149,9 +155,51 @@ async def  leave(ctx):
 		voice = await channel.connect()
 		await ctx.send(f'Бот вылетает с канала: {channel}')
 
- 
+@client.command()
+@commands.has_permissions( administrator = True )
 
-#Connect 
+async def sex( ctx, member: discord.Member ):
+	await ctx.channel.purge( limit = 1 )
+
+	sex_role = discord.utils.get( ctx.message.guild.roles, name = 'sex' )
+
+	await member.add_roles( sex_role )
+	await ctx.send( f'У { member.mention }, появилась топ роль!' )
+
+async def rainbowrole(role):
+    for role in client.get_guild(serverid).roles:
+        if str(role) == str(rainbowrolename):
+            print("detected role")
+            while not client.is_closed():
+                try:
+                    await role.edit(color=random.choice(colours))
+                except Exception:
+                    print("can't edit role, make sure the bot role is above the rainbow role and that is have the perms to edit roles")
+                    pass
+                await asyncio.sleep(delay)
+    print('role with the name "' + rainbowrolename +'" not found')
+    print("creating the role...")
+    try:
+        await client.get_guild(serverid).create_role(reason="Created rainbow role", name=rainbowrolename)
+        print("role created!")
+        await asyncio.sleep(2)
+        client.loop.create_task(rainbowrole(rainbowrolename))
+    except Exception as e:
+        print("couldn't create the role. Make sure the bot have the perms to edit roles")
+        print(e)
+        pass
+        await asyncio.sleep(10)
+        client.loop.create_task(rainbowrole(rainbowrolename))
+
+@client.event
+async def on_ready():
+    client.loop.create_task(rainbowrole(rainbowrolename))
+    print('Logged in as')
+    print(client.user.name)
+    print(client.user.id)
+    print('Ready.')
+    print('------------')
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 
 client.run(str(token)) # запускаем бота
+
