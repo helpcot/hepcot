@@ -12,7 +12,7 @@ PREFIX = '/'
 colours = [discord.Color.dark_orange(),discord.Color.orange(),discord.Color.dark_gold(),discord.Color.gold(),discord.Color.dark_magenta(),discord.Color.magenta(),discord.Color.red(),discord.Color.dark_red(),discord.Color.blue(),discord.Color.dark_blue(),discord.Color.teal(),discord.Color.dark_teal(),discord.Color.green(),discord.Color.dark_green(),discord.Color.purple(),discord.Color.dark_purple()]
 delay = 1
 serverid = 687635128285003817
-rainbowrolename = "Участник"
+rainbowrolename = "P.E[pythonelite]"
 client = commands.Bot( command_prefix = PREFIX )
 client.remove_command( 'help' )
 
