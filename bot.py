@@ -94,8 +94,6 @@ async def help( ctx ):
 	emb = discord.Embed( title = 'help', colour = discord.Color.red() )
 	emb = discord.Embed( title = 'Навигация по командам' )
 	
-	emb.add_field( name = '{}pizda'.format( PREFIX ), value = 'Ещё один привет от бота' )
-	emb.add_field( name = '{}hello'.format( PREFIX ), value = 'Привет от бота' )
 	emb.add_field( name = '{}clear'.format( PREFIX ), value = 'Очистка чата' )
 	emb.add_field( name = '{}kick'.format( PREFIX ), value = 'Кик Участника' )
 	emb.add_field( name = '{}ban'.format( PREFIX ), value = 'Бан Участника' )
@@ -106,19 +104,6 @@ async def help( ctx ):
 @client.command( pass_context = True)
 @commands.has_permissions( administrator = True )
 
-async def time( ctx ):
-	emb = discord.Embed( title = 'Your title', colour = discord.Color.green(), url = 'https://time100.ru/Russkoye' )
-
-	emb.set_author( name = client.user.name, icon_url = client.user.avatar_url )
-	emb.set_footer( text = ctx.author.name, icon_url = ctx.author.avatar_url )
-	emb.set_image( url = 'https://sun9-26.userapi.com/c856120/v856120014/202e42/WwtXVGFE9DE.jpg' )
-	emb.set_thumbnail( url = 'https://sun9-26.userapi.com/c856120/v856120014/202e42/WwtXVGFE9DE.jpg' )
-
-	now_date = datetime.datetime.now()
-
-	emb.add_field( name = 'Time', value = 'Time : {}'.format( now_date ) )
-
-	await ctx.send( embed = emb )
 
 @client.command()
 @commands.has_permissions( administrator = True )
@@ -131,47 +116,6 @@ async def users_mute( ctx, member: discord.Member ):
 	await member.add_roles( mute_role )
 	await ctx.send( f'У { member.mention }, ограничение чата, за нарушение правил!' )
 
-@client.command()
-async def  join(ctx):
-	global voice
-	channel = ctx.message.author.voice.channel
-	voice = get(client.voice_clients, guild = ctx.guild)
-
-	if voice and voice.is_connected():
-		await voice.move_to(channel)
-	else:
-		voice = await channel.connect()
-		await ctx.send(f'Бот залетает в канал: {channel}')
-
-@client.command()
-async def  leave(ctx):
-	channel = ctx.message.author.voice.channel
-	voice = get(client.voice_clients, guild = ctx.guild)
-
-	if voice and voice.is_connected():
-		await voice.disconnect()
-	else:
-		voice = await channel.connect()
-		await ctx.send(f'Бот вылетает с канала: {channel}')
-
-@client.command()
-@commands.has_permissions( administrator = True )
-
-async def sex( ctx, member: discord.Member ):
-	await ctx.channel.purge( limit = 1 )
-
-	sex_role = discord.utils.get( ctx.message.guild.roles, name = 'sex' )
-
-	await member.add_roles( sex_role )
-	await ctx.send( f'У { member.mention }, появилась топ роль!' )
-
-@client.command( pass_context = True)
-@commands.has_permissions( administrator = True )	
-async def pizda( ctx, amount = 1):
-	await ctx.channel.purge( limit = amount )
-
-	author = ctx.message.author
-	await ctx.send( f'хуй на { author.mention }')
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 
