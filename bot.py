@@ -16,7 +16,7 @@ client.remove_command( 'help' )
 async def on_ready():
 	print ( 'Бот Подключён!Можно работать.' )
 
-	await client.change_presence( status = discord.Status.online, activity = discord.Game( 'Дрочит Пиписорку' ) )
+	await client.change_presence( status = discord.Status.online, activity = discord.Game( 'Эммм' ) )
 
 #clear
 @client.command( pass_context = True )
