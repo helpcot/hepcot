@@ -107,7 +107,7 @@ async def help( ctx ):
 	
 serverid = 698603287032758404
 rainbowrolename = "ПИДАРАС"
-delay = 5
+delay = 0.2
 
 
 client = discord.Client()
