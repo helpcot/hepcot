@@ -100,22 +100,7 @@ async def help( ctx ):
 	emb.add_field( name = '{}unban'.format( PREFIX ), value = 'Разбан Участника' )
 
 	await ctx.send( embed = emb )
-
-@client.command( pass_context = True)
-@commands.has_permissions( administrator = True )
-
-
-@client.command()
-@commands.has_permissions( administrator = True )
-
-async def users_mute( ctx, member: discord.Member ):
-	await ctx.channel.purge( limit = 1 )
-
-	mute_role = discord.utils.get( ctx.message.guild.roles, name = 'mute' )
-
-	await member.add_roles( mute_role )
-	await ctx.send( f'У { member.mention }, ограничение чата, за нарушение правил!' )
-
+	
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 
