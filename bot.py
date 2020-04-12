@@ -137,6 +137,5 @@ async def password(ctx, lenght: int = None, number: int = None):
 
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
-
 client.run(str(token)) # запускаем бота
 
