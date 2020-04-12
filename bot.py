@@ -105,18 +105,15 @@ async def members(ctx):
 	
 	
 @client.command()
-async def coin( ctx ):
-    coins = [ 'орел', 'решка' ]
-    coins_r = random.choice( coins )
-    coin_win = 'орел'
+async def avatar(ctx, member : discord.Member = None):
 
-    if coins_r == coin_win:
-        await ctx.send(embed = discord.Embed(description= f''':tada: { ctx.message.author.name }, выиграл! 
-            Тебе повезло у тебя: ``{ coins_r }``''', color = 0x0c0c0c))
+    user = ctx.message.author if (member == None) else member
 
-    if coins_r != coin_win:
-        await ctx.send(embed = discord.Embed(description= f''':thumbsdown:  { ctx.message.author.name }, проиграл! 
-            Тебе не повезло у тебя: ``{ coins_r }``''', color = 0x0c0c0c)) 
+    embed = discord.Embed(title=f'Аватар пользователя {user}', color= 0x0c0c0c)
+
+    embed.set_image(url=user.avatar_url)
+
+    await ctx.send(embed=embed)
 	
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
