@@ -109,7 +109,7 @@ async def avatar(ctx, member : discord.Member = None):
 	
     user = ctx.message.author if (member == None) else member
 
-    embed = discord.Embed(title=f'Аватар пользователя {user}', color= 0x0c0c0c)
+    embed = discord.Embed(title=f'Аватар пользователя {user}', color= 0x00FF00)
 
     embed.set_image(url=user.avatar_url)
 
