@@ -132,7 +132,7 @@ async def password(ctx, lenght: int = None, number: int = None):
         for i in range( lenght ):
             password += random.choice(chars)
 
-        await ctx.send(embed = discord.Embed(description = f'Сгенерированный пароль:\n{password}', color=0x0c0c0c)) 
+        await ctx.send(embed = discord.Embed(description = f'Сгенерированный пароль:\n{password}', color=0x00FFFF)) 
         return
 
 	
