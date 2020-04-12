@@ -266,26 +266,6 @@ async def bridge(ctx):
     await message.edit(embed = emb)
 
 
-@client.command()
-async def join(ctx):
-    global voice
-    channel = ctx.message.author.voice.channel
-    voice = get(client.voice_clients, guild=ctx.guild)
-    if voice and voice.is_connected():
-        await voice.move_to(channel)
-    else:
-        voice = await channel.connect()
-
-@client.command()
-async def leave(ctx):
-    channel = ctx.message.author.voice.channel
-    voice = get(client.voice_clients, guild=ctx.guild)
-    if voice and voice.is_connected():
-        await voice.disconnect()
-    else:
-        voice = await channel.connect()
-
-
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
 
