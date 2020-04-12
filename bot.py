@@ -11,6 +11,7 @@ import random as r
 PREFIX = '/'
 
 
+
 client = commands.Bot( command_prefix = PREFIX )
 client.remove_command( 'help' )
 
@@ -27,18 +28,7 @@ async def on_ready():
 
 async def clear( ctx, amount = 100 ):
 	await ctx.channel.purge( limit = amount )
-
-
-#clear commands
-@client.command( pass_context = True)
-@commands.has_permissions( administrator = True )
 	
-async def hello( ctx, amount = 1):
-	emb = discord.Embed( title = 'Kick', colour = discord.Color.green() )
-	await ctx.channel.purge( limit = amount )
-
-	author = ctx.message.author
-	await ctx.send( f'Иди нахуй бомж ебаный { author.mention }')
 
 #Kick
 @client.command( pass_context = True )
@@ -108,8 +98,6 @@ async def help( ctx ):
 
 @client.command()
 async def members(ctx):
-	emb = discord.Embed( title = 'help', colour = discord.Color.red() )
-	
     server_members = ctx.guild.members
     data = "\n".join([i.name for i in server_members])
     
