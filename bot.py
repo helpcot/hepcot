@@ -101,12 +101,14 @@ async def help( ctx ):
 	emb.add_field( name = '{}kick'.format( PREFIX ), value = 'Кик Участника' )
 	emb.add_field( name = '{}ban'.format( PREFIX ), value = 'Бан Участника' )
 	emb.add_field( name = '{}unban'.format( PREFIX ), value = 'Разбан Участника' )
+	emb.add_field( name = '{}members'.format( PREFIX ), value = 'Посмотреть Участников Сервера' )
 
 	await ctx.send( embed = emb )
 	
 
 @client.command()
 async def members(ctx):
+	emb = discord.Embed( title = 'help', colour = discord.Color.red() )
     server_members = ctx.guild.members
     data = "\n".join([i.name for i in server_members])
     
