@@ -105,7 +105,7 @@ async def members(ctx):
 	
 	
 @client.command()
-async def avatar(ctx, member : discord.Member = None):
+async def av(ctx, member : discord.Member = None):
 	
     user = ctx.message.author if (member == None) else member
 
