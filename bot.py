@@ -106,6 +106,7 @@ async def members(ctx):
 	
 @client.command()
 async def avatar(ctx, member : discord.Member = None):
+	await ctx.channel.purge( limit = 1 )
 
     user = ctx.message.author if (member == None) else member
 
