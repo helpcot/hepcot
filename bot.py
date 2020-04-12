@@ -102,6 +102,27 @@ async def members(ctx):
     data = "\n".join([i.name for i in server_members])
     
     await ctx.send(data)
+	
+	
+@bot.command()
+@commands.has_permissions( administrator = True )
+async def tmute(ctx,amount : int,member: discord.Member = None, reason = None):
+    mute_role = discord.utils.get(member.guild.roles, id = 698619622852788335) #Айди роли
+    channel_log = bot.get_channel(698603287032758404) #Айди канала логов
+
+    await member.add_roles( mute_role )
+    await ctx.send(embed = discord.Embed(description = f'**:shield: Пользователю {member.mention} был ограничен доступ к чатам.\n:book: По причине: {reason}**', color=0x0c0c0c)) 
+    await channel_log.send(embed = discord.Embed(description = f'**:shield: Пользователю {member.mention} был ограничен доступ к чатам.\n:book: По причине: {reason}**', color=0x0c0c0c))
+    await asyncio.sleep(amount)
+    await member.remove_roles( mute_role )   
+
+# Работа с ошибками мута на время
+
+@tempmute.error 
+async def tmute_error(ctx, error):
+
+    if isinstance( error, commands.MissingPermissions ):
+        await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.name},у вас нет прав для использования данной команды.**', color=0x0c0c0c))
 		
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
