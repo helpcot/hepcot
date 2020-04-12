@@ -135,53 +135,6 @@ async def password(ctx, lenght: int = None, number: int = None):
         await ctx.send(embed = discord.Embed(description = f'Сгенерированный пароль:\n{password}', color=0x00FFFF)) 
         return
 
-
-# создаем таблицу если её нету
-cursor.execute("""CREATE TABLE IF NOT EXISTS users (
-                id TEXT,
-                nickname TEXT,
-                mention TEXT,
-                lvl INT,
-                xp INT)""")
-
-
-@client.event
-async def on_message(message):
-    cursor.execute(f"SELECT id FROM users where id={message.author.id}") # загружаем БД игрока
-    if cursor.fetchone() == None: # Если игрока нету в БД, но он на сервере, то..
-        cursor.execute(f"INSERT INTO users VALUES ({message.author.id}, '{message.author.name}', '<@{message.author.id}>', 1, 0)") # вводим данные игрока согласно созданной таблице
-    else: # если игрок есть в БД
-        pass
-    conn.commit() # сохранение БД
-    if len(message.content) > 5: # будем начислять опыт за сообщение больше 5ти символов
-        for row in cursor.execute(f"SELECT xp,lvl FROM users where id={message.author.id}"):
-            expi = row[0]+r.randint(1, 3) # вводим новую переменную, в которую будем добавлять опыт от 1 до 3 единиц
-            cursor.execute(f'UPDATE users SET xp={expi} where id={message.author.id}') # обновляем опыт игрока в БД
-            lvch = expi/(row[1]*100) # при каком количестве будет повышение LVL
-            lv = int(lvch)
-            if row[1] < lv: #если текущий уровень меньше уровня, который был рассчитан формулой выше, то...
-                await message.channel.send(f'Поздравляю! Вы достигли нового уровня!')
-                bal=1000*lv
-                cursor.execute(f'UPDATE users SET lvl={lv} where id={message.author.id}') # обновляем уровень игрока
-    await client.process_commands(message) # данная фича нужна чтобы узать потом команды
-    conn.commit() # опять сохраняем БД
-
-
-@client.event
-async def on_member_join(member):
-    cursor.execute(f"SELECT id FROM users where id={member.id}") # все также, существует ли участник в БД
-    if cursor.fetchone() == None:
-        cursor.execute(f"INSERT INTO users VALUES ({member.id}, '{member.name}', '<@{member.id}>', 1, 0)")
-    else:
-        pass
-    conn.commit()
-
-
-@client.command()
-async def lvl(ctx):
-    for row in cursor.execute(f"SELECT lvl,xp FROM users where id={ctx.author.id}"): # задаем цикл где row[0] - уровень, а row[1] - опыт
-        await ctx.send(f'Ваш уровень {row[0]}. Опыт: {row[1]}.')
-
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 
