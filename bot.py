@@ -118,20 +118,22 @@ async def av(ctx, member : discord.Member = None):
     await ctx.send(embed=embed)
 
 
-@client.command(name = "changename", aliases = ["rename", "change"])
-@commands.has_permissions(kick_members = True)
-async def changing_name(ctx, member: discord.Member = None, nickname: str = None):
-    try:
-        if member is None:
-            await ctx.send(embed = discord.Embed(description = "Обязательно укажите **пользователя**!"))
-        elif nickname is None:
-            await ctx.send(embed = discord.Embed(description = "Обязательно укажите ник!"))
-        else:
-            await member.edit(nick = nickname)
-            await ctx.send(embed = discord.Embed(description = f"У пользователя **{member.name}** был изменен ник на **{nickname}**"))
-    except:
-        await ctx.send(embed = discord.Embed(description = f"Я не могу изменить ник пользователя **{member.name}**!"))
-	
+@client.command()
+async def password(ctx, lenght: int = None, number: int = None):
+
+    if not lenght or not number:
+        await ctx.send(embed = discord.Embed(description = f'Пожалуйста, укажите длину пароля и количество символов в нем.', color=0x0c0c0c)) 
+
+    chars = 'abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+    for x in range(number):
+        password = ''
+
+        for i in range( lenght ):
+            password += random.choice(chars)
+
+        await ctx.send(embed = discord.Embed(description = f'Сгенерированный пароль:\n{password}', color=0x0c0c0c)) 
+        return
+
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 
