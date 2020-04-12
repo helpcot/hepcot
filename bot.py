@@ -169,6 +169,99 @@ async def __count(ctx, *, args = None):
 async def roles(ctx, role: discord.Role):
     await ctx.send(embed = discord.Embed(description = f'**Участников с этой ролью:** {len(role.members)}', color = 0x800000))
 
+
+@client.command(aliases=['мост2'])
+async def bridge(ctx):
+    #jo = [ 'плохим' , 'ветхим' , 'прочным' , 'каменным' , 'деревянным' , 'на соплях' ]
+    vir = ['прочным','каменным','ударооустойчивым','деревянным']
+    vir2 = ['плохим','ветхим','на соплях','из веток']
+    var = r.choice(vir)
+    var2 = r.choice(vir2)
+    ###############
+    si1 = ['умный','внимательный','опытный','ловкий']
+    si2 = ['пьяный','кантуженный','слепой','тупой','сорвиголова','уставший']
+    st1 = r.choice(si1)
+    st2 = r.choice(si2)
+    ###############
+    di1 = ['аккуратно пошёл','пополз','осторожно шагал']
+    di2 = ['полетел','мысленно пошёл','быстро побежал','неуклюже пошёл','неосторожно шагал']
+    de1 = r.choice(di1)
+    de2 = r.choice(di2)
+    ###############
+    sl1 = ['У моста был самолёт','Около моста была лошадь','Было солнечно']
+    sl2 = ['На мост напали крокодилы','Германские войска начали бомбить мост','Мост начал разваливаться','У моста ходили волки','У подножия обедал медведь','Кто-то начал орать','Дул сильный ветер']
+    se1 = r.choice(sl1)
+    se2 = r.choice(sl2)
+    member = ctx.author.mention
+    luck = 0
+    emb = discord.Embed(title='__Переправа через речку__',description=f'Переправляется {member}')
+    message = await ctx.send(embed = emb)
+    await asyncio.sleep(1)
+    a = 'удача'
+    b = 'провал'
+    e = [a,b]
+    ds = r.choice(e)
+    ################
+    a1 = 'удача'
+    b1 = 'провал'
+    e1 = [a1,b1]
+    r1 = r.choice(e1)
+    ################
+    a2 = 'удача'
+    b2 = 'провал'
+    e2 = [a2,b2]
+    r2 = r.choice(e2)
+    ################
+    a3 = 'удача'
+    b3 = 'провал'
+    e3 = [a3,b3]
+    r3 = r.choice(e3)
+    if ds == a:
+        luck += 1
+        emb.add_field(name='1 шаг\nПостройка моста', value=f'Мост оказался {var}\n`Итог:` **УДАЧА**')
+    if ds == b:
+        luck -= 1
+        emb.add_field(name='1 шаг\nПостройка моста', value=f'Мост оказался {var2}\n`Итог:` **НЕУДАЧА**')
+    await message.edit(embed = emb)
+    await asyncio.sleep(2)
+    #########################
+    if r1 == a1:
+        luck += 1
+        emb.add_field(name=f'2 шаг\nСостояние {ctx.author.name}', value=f'{member} был {st1}\n`Итог:` **УДАЧА**')
+    if r1 == b1:
+        luck -= 1
+        emb.add_field(name=f'2 шаг\nCостояние {ctx.author.name}', value=f'{member} был {st2}\n`Итог:` **НЕУДАЧА**')
+    await message.edit(embed = emb)
+    await asyncio.sleep(2)
+    #########################
+    if r2 == a2:
+        luck += 1
+        emb.add_field(name=f'3 шаг\nПереход {ctx.author.name}', value=f'{member} {de1}\n`Итог:` **УДАЧА**')
+    if r2 == b2:
+        luck -= 1
+        emb.add_field(name=f'3 шаг\nПереход {ctx.author.name}', value=f'{member} {de2}\n`Итог:` **НЕУДАЧА**')
+    await message.edit(embed = emb)
+    await asyncio.sleep(2)
+    ########################
+    if r3 == a3:
+        luck += 1
+        emb.add_field(name=f'4 шаг\nПриключение {ctx.author.name}', value=f'{se1}\n`Итог:` **УДАЧА**')
+    if r3 == b3:
+        luck -= 1
+        emb.add_field(name=f'4 шаг\nПриключение {ctx.author.name}', value=f'{se2}\n`Итог:` **НЕУДАЧА**')
+    await message.edit(embed = emb)
+    await asyncio.sleep(2)
+    ########################
+    ran = ['Успех\n{member} успешно перебрался','Провал\n{member} так и не смог перебраться']
+    rin = r.choice(ran)
+    if luck > 0:
+        emb.add_field(name='Успех', value=f'{member} успешно перебрался')
+    if luck < 0:
+        emb.add_field(name='Провал', value=f'{member} так и не смог перебраться')
+    if luck == 0:
+        emb.add_field(name=..., value ={rin})
+    await message.edit(embed = emb)
+
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
