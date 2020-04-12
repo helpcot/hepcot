@@ -112,7 +112,7 @@ start_ev = 0 #перемычка
 async def event_roles(stx, role: discord.Role = None, member: discord.Member = None):
     global ev_player
     global start_ev
-    general = client.get_channel(CHANNEL_ID)
+    general = client.get_channel(698603287032758404)
     if role is None:
         await stx.send('**Упомяните роль для розыгрыша.**' '\n' '`!event_roles [role]`')
         return
