@@ -105,17 +105,34 @@ async def members(ctx):
 	
 	
 @client.command()
-@commands.has_permissions( administrator = True )
-async def tempmute(ctx,amount : int,member: discord.Member = None, reason = None):
-    mute_role = discord.utils.get(member.guild.roles, id = 698619622852788335) #Айди роли
-    channel_log = client.get_channel(698603287032758404) #Айди канала логов
+@commands.has_permissions( administrator = True) 
+async def mute(ctx,member: discord.Member = None, reason = None): 
 
-    await member.add_roles( mute_role )
-    await ctx.send(embed = discord.Embed(description = f'**:shield: Пользователю {member.mention} был ограничен доступ к чатам.\n:book: По причине: {reason}**', color=0x0c0c0c)) 
-    await channel_log.send(embed = discord.Embed(description = f'**:shield: Пользователю {member.mention} был ограничен доступ к чатам.\n:book: По причине: {reason}**', color=0x0c0c0c))
-    await asyncio.sleep(amount)
-    await member.remove_roles( mute_role )   
+    if member is None:
 
+        await ctx.send(embed = discord.Embed(description = '**:grey_exclamation: Обязательно укажите: пользователя!**'))
+
+    elif reason is None:
+
+        await ctx.send(embed = discord.Embed(description = '**:grey_exclamation: Обязательно укажите: причину!**'))
+
+    else:
+
+        mute_role = discord.utils.get(member.guild.roles, id = 698619622852788335) #Айди роли
+        channel_log = bot.get_channel(698603287032758404) #Айди канала логов
+
+        await member.add_roles( mute_role )
+        await ctx.send(embed = discord.Embed(description = f'**:shield: Пользователю {member.mention} был ограничен доступ к чатам.\n:book: По причине: {reason}**', color=0x0c0c0c)) 
+        await channel_log.send(embed = discord.Embed(description = f'**:shield: Пользователю {member.mention} был ограничен доступ к чатам.\n:book: По причине: {reason}**', color=0x0c0c0c))  
+
+# Работа с ошибками мута
+
+@mute.error 
+async def mute_error(ctx, error):
+
+    if isinstance( error, commands.MissingPermissions ):
+        await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.name},у вас нет прав для использования данной команды.**', color=0x0c0c0c))
+		
 
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 
