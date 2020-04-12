@@ -104,6 +104,21 @@ async def members(ctx):
     await ctx.send(data)
 	
 	
+@client.command()
+async def coin( ctx ):
+    coins = [ 'орел', 'решка' ]
+    coins_r = random.choice( coins )
+    coin_win = 'орел'
+
+    if coins_r == coin_win:
+        await ctx.send(embed = discord.Embed(description= f''':tada: { ctx.message.author.name }, выиграл! 
+            Тебе повезло у тебя: ``{ coins_r }``''', color = 0x0c0c0c))
+
+    if coins_r != coin_win:
+        await ctx.send(embed = discord.Embed(description= f''':thumbsdown:  { ctx.message.author.name }, проиграл! 
+            Тебе не повезло у тебя: ``{ coins_r }``''', color = 0x0c0c0c)) 
+	
+	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 
 client.run(str(token)) # запускаем бота
