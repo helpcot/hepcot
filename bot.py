@@ -135,6 +135,15 @@ async def password(ctx, lenght: int = None, number: int = None):
         await ctx.send(embed = discord.Embed(description = f'Сгенерированный пароль:\n{password}', color=0x00FFFF)) 
         return
 
+
+@client.event
+async def on_message(message):
+    await client.process_commands(message)
+    ctx = message.content
+    author = message.author
+    channel = message.channel.name
+    print("{0},{1},{2}".format(ctx,author,channel))
+
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
