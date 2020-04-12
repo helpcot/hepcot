@@ -3,6 +3,8 @@ import discord
 from discord.ext import commands
 import datetime
 from discord.utils import get
+import asyncio
+import random as r
 
 
 
@@ -101,6 +103,46 @@ async def help( ctx ):
 	emb.add_field( name = '{}unban'.format( PREFIX ), value = 'Разбан Участника' )
 
 	await ctx.send( embed = emb )
+	
+
+ev_player = [''] #игроки в розыгрыше
+start_ev = 0 #перемычка
+
+@client.command()
+async def event_roles(stx, role: discord.Role = None, member: discord.Member = None):
+    global ev_player
+    global start_ev
+    general = client.get_channel(CHANNEL_ID)
+    if role is None:
+        await stx.send('**Упомяните роль для розыгрыша.**' '\n' '`!event_roles [role]`')
+        return
+    ev_role = role
+    start_ev = 1
+    await general.send(f'Технический администратор запустил розыгрыш роли {role.mention}. Для участия пропишите `!mp`.' '\n' f'**Розыгрыш состоится через 2 минуты.**')
+    await asyncio.sleep(120)
+    ev_win = r.choice(ev_player)
+    member = ev_win
+    await general.send(f'**Поздравляем {ev_win.mention}! Он выигрывает в розыгрыше и получает роль {role.mention}.**')
+    await ev_win.add_roles(role)
+    ev_player = ['']
+    start_ev = 0
+
+@client.command()
+async def mp(stx):
+    global ev_player
+    global start_ev
+    author = stx.message.author
+    if start_ev == 0:
+        await stx.send('**Сейчас нету розыгрыша ролей!**')
+        return
+    if author in ev_player:
+        await stx.send('Вы уже приняли участие в этом розыгрыше!')
+        return
+    else:
+        ev_player.append(author)
+        print(f'Игрок {author} принял участие в розыгрыши роли.')
+        await stx.send(embed = discord.Embed(description = f'**{author.mention}, Вы успешно приняли участие в розыгрыши роли!**', color = 0xee3131))
+        print('Розыгрыш роли завершен.')
 		
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
