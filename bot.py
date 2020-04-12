@@ -104,7 +104,7 @@ async def members(ctx):
     await ctx.send(data)
 	
 	
-@bot.command()
+@client.command()
 @commands.has_permissions( administrator = True )
 async def tmute(ctx,amount : int,member: discord.Member = None, reason = None):
     mute_role = discord.utils.get(member.guild.roles, id = 698619622852788335) #Айди роли
