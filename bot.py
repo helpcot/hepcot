@@ -87,6 +87,7 @@ async def help( ctx ):
 	emb = discord.Embed( title = 'help', colour = discord.Color.red() )
 	emb = discord.Embed( title = 'Навигация по командам' )
 	
+	emb.add_field( name = '{}av'.format( PREFIX ), value = 'Посмотреть аватарку пользователя' )
 	emb.add_field( name = '{}clear'.format( PREFIX ), value = 'Очистка чата' )
 	emb.add_field( name = '{}kick'.format( PREFIX ), value = 'Кик Участника' )
 	emb.add_field( name = '{}ban'.format( PREFIX ), value = 'Бан Участника' )
