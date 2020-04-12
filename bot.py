@@ -5,6 +5,7 @@ import datetime
 from discord.utils import get
 import asyncio
 import random as r
+import random
 
 
 
