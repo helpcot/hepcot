@@ -116,6 +116,21 @@ async def av(ctx, member : discord.Member = None):
 
     await ctx.channel.purge( limit = 1 )
     await ctx.send(embed=embed)
+
+
+@client.command(name = "changename", aliases = ["rename", "change"])
+@commands.has_permissions(kick_members = True)
+async def changing_name(ctx, member: discord.Member = None, nickname: str = None):
+    try:
+        if member is None:
+            await ctx.send(embed = discord.Embed(description = "Обязательно укажите **пользователя**!"))
+        elif nickname is None:
+            await ctx.send(embed = discord.Embed(description = "Обязательно укажите ник!"))
+        else:
+            await member.edit(nick = nickname)
+            await ctx.send(embed = discord.Embed(description = f"У пользователя **{member.name}** был изменен ник на **{nickname}**"))
+    except:
+        await ctx.send(embed = discord.Embed(description = f"Я не могу изменить ник пользователя **{member.name}**!"))
 	
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
