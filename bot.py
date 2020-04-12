@@ -165,17 +165,6 @@ async def __count(ctx, *, args = None):
         await ctx.send(embed = discord.Embed(description = f'Evaluation result of `{args}`: \n`{result}`', color = 0x800080))
 	
 	
-@client.command(aliases = ['count', 'calc', 'вычисли', 'math'])
-async def __count(ctx, *, args = None):
-    text = ctx.message.content
-
-    if args == None:
-        await ctx.send(embed = discord.Embed(description = 'Please, specify expression to evaluate.', color = 0x800080))
-    else:
-        result = eval(args)
-        await ctx.send(embed = discord.Embed(description = f'Evaluation result of `{args}`: \n`{result}`', color = 0x800080))
-
-
 @client.command()
 async def roles(ctx, role: discord.Role):
     await ctx.send(embed = discord.Embed(description = f'**Участников с этой ролью:** {len(role.members)}', color = 0x800000))
