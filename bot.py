@@ -106,14 +106,14 @@ async def members(ctx):
 	
 @client.command()
 async def avatar(ctx, member : discord.Member = None):
-	await ctx.channel.purge( limit = 1 )
-
+	
     user = ctx.message.author if (member == None) else member
 
     embed = discord.Embed(title=f'Аватар пользователя {user}', color= 0x0c0c0c)
 
     embed.set_image(url=user.avatar_url)
 
+    await ctx.channel.purge( limit = 1 )
     await ctx.send(embed=embed)
 	
 	
