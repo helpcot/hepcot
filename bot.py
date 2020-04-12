@@ -109,6 +109,7 @@ async def help( ctx ):
 @client.command()
 async def members(ctx):
 	emb = discord.Embed( title = 'help', colour = discord.Color.red() )
+	
     server_members = ctx.guild.members
     data = "\n".join([i.name for i in server_members])
     
