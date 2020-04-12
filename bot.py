@@ -194,14 +194,14 @@ async def bridge(ctx):
     se2 = r.choice(sl2)
     member = ctx.author.mention
     luck = 0
-    emb = discord.Embed(title='__Переправа через речку__',description=f'Переправляется {member}')
+    emb = discord.Embed(title='Переправа через речку',description=f'Переправляется {member}')
     message = await ctx.send(embed = emb)
     await asyncio.sleep(1)
     a = 'удача'
     b = 'провал'
     e = [a,b]
     ds = r.choice(e)
-    ################
+################
     a1 = 'удача'
     b1 = 'провал'
     e1 = [a1,b1]
@@ -216,50 +216,53 @@ async def bridge(ctx):
     b3 = 'провал'
     e3 = [a3,b3]
     r3 = r.choice(e3)
+    #################
+    
+
     if ds == a:
         luck += 1
-        emb.add_field(name='1 шаг\nПостройка моста', value=f'Мост оказался {var}\n`Итог:` **УДАЧА**')
+        emb.add_field(name='1 шаг\nПостройка моста', value=f'Мост оказался {var}\nИтог: УДАЧА')
     if ds == b:
         luck -= 1
-        emb.add_field(name='1 шаг\nПостройка моста', value=f'Мост оказался {var2}\n`Итог:` **НЕУДАЧА**')
+        emb.add_field(name='1 шаг\nПостройка моста', value=f'Мост оказался {var2}\nИтог: НЕУДАЧА')
     await message.edit(embed = emb)
     await asyncio.sleep(2)
     #########################
     if r1 == a1:
         luck += 1
-        emb.add_field(name=f'2 шаг\nСостояние {ctx.author.name}', value=f'{member} был {st1}\n`Итог:` **УДАЧА**')
+        emb.add_field(name=f'2 шаг\nСостояние {ctx.author.name}', value=f'{member} был {st1}\nИтог: УДАЧА')
     if r1 == b1:
         luck -= 1
-        emb.add_field(name=f'2 шаг\nCостояние {ctx.author.name}', value=f'{member} был {st2}\n`Итог:` **НЕУДАЧА**')
+        emb.add_field(name=f'2 шаг\nCостояние {ctx.author.name}', value=f'{member} был {st2}\nИтог: НЕУДАЧА')
     await message.edit(embed = emb)
     await asyncio.sleep(2)
     #########################
     if r2 == a2:
         luck += 1
-        emb.add_field(name=f'3 шаг\nПереход {ctx.author.name}', value=f'{member} {de1}\n`Итог:` **УДАЧА**')
+        emb.add_field(name=f'3 шаг\nПереход {ctx.author.name}', value=f'{member} {de1}\nИтог: УДАЧА')
     if r2 == b2:
         luck -= 1
-        emb.add_field(name=f'3 шаг\nПереход {ctx.author.name}', value=f'{member} {de2}\n`Итог:` **НЕУДАЧА**')
+        emb.add_field(name=f'3 шаг\nПереход {ctx.author.name}', value=f'{member} {de2}\nИтог: НЕУДАЧА')
     await message.edit(embed = emb)
     await asyncio.sleep(2)
     ########################
     if r3 == a3:
         luck += 1
-        emb.add_field(name=f'4 шаг\nПриключение {ctx.author.name}', value=f'{se1}\n`Итог:` **УДАЧА**')
+        emb.add_field(name=f'4 шаг\nПриключение {ctx.author.name}', value=f'{se1}\nИтог: УДАЧА')
     if r3 == b3:
         luck -= 1
-        emb.add_field(name=f'4 шаг\nПриключение {ctx.author.name}', value=f'{se2}\n`Итог:` **НЕУДАЧА**')
+        emb.add_field(name=f'4 шаг\nПриключение {ctx.author.name}', value=f'{se2}\nИтог: НЕУДАЧА')
     await message.edit(embed = emb)
     await asyncio.sleep(2)
     ########################
-    ran = ['Успех\n{member} успешно перебрался','Провал\n{member} так и не смог перебраться']
+    ran = ['Ты успешно перебрался','Ты так и не смог перебраться']
     rin = r.choice(ran)
     if luck > 0:
         emb.add_field(name='Успех', value=f'{member} успешно перебрался')
     if luck < 0:
         emb.add_field(name='Провал', value=f'{member} так и не смог перебраться')
     if luck == 0:
-        emb.add_field(name=..., value ={rin})
+        emb.add_field(name='Итог:', value =f'{rin}')
     await message.edit(embed = emb)
 
 	
