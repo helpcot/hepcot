@@ -15,6 +15,7 @@ PREFIX = '/'
 
 client = commands.Bot( command_prefix = PREFIX )
 client.remove_command( 'help' )
+muted = discord.utils.get( ctx.message.guild.roles, name = 'mute' )
 
 @client.event
 
@@ -272,8 +273,7 @@ async def mute(ctx, amount : int, member: discord.Member = None, role: discord.R
     await ctx.channel.purge( limit = 1 )
 
 
-            mute_role = discord.utils.get( ctx.message.guild.roles, name = 'mute' )
-            await member.add_roles( mute_role )
+            await member.add_roles( muted )
             await ctx.send(embed = discord.Embed(description = f'**Роль успешна выдана на {amount} секунд!**'))
             await asyncio.sleep(amount)
             await member.remove_roles( mute_role )
