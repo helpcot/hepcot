@@ -89,16 +89,12 @@ async def help( ctx ):
 	emb = discord.Embed( title = 'help', colour = discord.Color.red() )
 	emb = discord.Embed( title = 'Навигация по командам' )
 	
-    	emb.add_field( name = '{}roles'.format( PREFIX ), value = 'Посмотерть всех участников заданной роли' )
-   	emb.add_field( name = '{}password'.format( PREFIX ), value = 'Сгенерировать пароль' )
-   	emb.add_field( name = '{}mute'.format( PREFIX ), value = 'Выдать мут' )
-   	emb.add_field( name = '{}av'.format( PREFIX ), value = 'Посмотреть аватарку пользователя' )
+    	emb.add_field( name = '{}av'.format( PREFIX ), value = 'Посмотреть аватарку пользователя' )
     	emb.add_field( name = '{}clear'.format( PREFIX ), value = 'Очистка чата' )
-   	emb.add_field( name = '{}kick'.format( PREFIX ), value = 'Кик Участника' )
+    	emb.add_field( name = '{}kick'.format( PREFIX ), value = 'Кик Участника' )
     	emb.add_field( name = '{}ban'.format( PREFIX ), value = 'Бан Участника' )
     	emb.add_field( name = '{}unban'.format( PREFIX ), value = 'Разбан Участника' )
     	emb.add_field( name = '{}members'.format( PREFIX ), value = 'Посмотреть Участников Сервера' )
-    	emb.add_field( name = '{}bridge'.format( PREFIX ), value = 'Мини игра' )
 
 	await ctx.send( embed = emb )
 	
