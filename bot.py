@@ -279,7 +279,7 @@ async def mute(ctx, amount : int, member: discord.Member = None, role: discord.R
 	mute_role = discord.utils.get( ctx.message.guild.roles, name = 'mute' )
 	
 	await member.add_roles( mute_role )
-	await ctx.send(embed = discord.Embed(description = f'**Роль успешна выдана на {amount} секунд!**'))
+	await ctx.send(embed = discord.Embed(description = f'**Мут успешно выдан на {amount} секунд!**'))
 	await asyncio.sleep(amount)
 	await member.remove_roles( mute_role )
 
