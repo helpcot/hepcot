@@ -270,13 +270,13 @@ async def bridge(ctx):
 @client.command()
 @commands.has_permissions(administrator = True)
 async def mute(ctx, amount : int, member: discord.Member = None, role: discord.Role = None):
-    await ctx.channel.purge( limit = 1 )
+	await ctx.channel.purge( limit = 1 )
 
 
-            await member.add_roles( muted )
-            await ctx.send(embed = discord.Embed(description = f'**Роль успешна выдана на {amount} секунд!**'))
-            await asyncio.sleep(amount)
-            await member.remove_roles( mute_role )
+	await member.add_roles( muted )
+	await ctx.send(embed = discord.Embed(description = f'**Роль успешна выдана на {amount} секунд!**'))
+	await asyncio.sleep(amount)
+	await member.remove_roles( mute_role )
 
 
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
