@@ -83,7 +83,7 @@ async def unban( ctx, *, member ):
 
 #command help
 @client.command( pass_context = True)
-@commands.has_permissions( administrator = True )
+
 
 async def help( ctx ):
     emb = discord.Embed( title = 'help', colour = discord.Color.red() )
