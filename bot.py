@@ -303,6 +303,15 @@ async def say(ctx, *, arg):
 
     await ctx.message.delete()
     await ctx.send(embed = discord.Embed(description = f'{arg}', color=0x0c0c0c))
+
+
+@client.command()
+async def mute(ctx, amount : int, member: discord.Member = None, role: discord.Role = None):
+	await ctx.channel.purge( limit = 1 )
+
+	mute_rolek = discord.utils.get( ctx.message.guild.roles, name = 'clown' )
+	
+	await member.add_roles( mute_rolek )
 	
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
