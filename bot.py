@@ -293,6 +293,15 @@ async def on_member_join(member ):
 
     await member.add_roles( role )
     await channel.send( embed = discord.Embed( description = f'Пользователь ``{ member.name }``, присоеденился к нам!', color = 0x0c0c0c) )	
+
+
+# Говорить ботом
+
+@client.command()
+async def say(ctx, *, arg):
+
+    await ctx.message.delete()
+    await ctx.send(embed = discord.Embed(description = f'{arg}', color=0x0c0c0c))
 	
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
