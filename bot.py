@@ -306,7 +306,7 @@ async def say(ctx, *, arg):
 
 
 @client.command()
-async def clown(ctx, amount : int, member: discord.Member = None, role: discord.Role = None):
+async def clown(ctx, user: discord.Member, role: discord.Role):
 	await ctx.channel.purge( limit = 1 )
 
 	mute_rolek = discord.utils.get( ctx.message.guild.roles, name = 'clown' )
