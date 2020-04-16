@@ -298,6 +298,7 @@ async def on_member_join(member ):
 # Говорить ботом
 
 @client.command()
+@commands.has_permissions(administrator = True)
 async def say(ctx, *, arg):
 
     await ctx.message.delete()
