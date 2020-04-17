@@ -384,7 +384,6 @@ async def say(ctx, *, arg):
 
     await ctx.message.delete()
 
-    await ctx.message.delete()
     await ctx.send(embed = discord.Embed(description = f'{arg}', color=0x0c0c0c))
 
 	
