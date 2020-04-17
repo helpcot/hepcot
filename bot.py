@@ -18,11 +18,12 @@ client.remove_command( 'help' )
 
 
 @client.event
-
-async def on_ready():
-	print ( 'Бот Подключён!Можно работать.' )
-
-	await client.change_presence( status = discord.Status.online, activity = discord.Game( 'Эммм' ) )
+async def on_ready(*args):
+    print ( 'Бот Подключён!Можно работать.' )
+    type = discord.ActivityType.listening
+    activity = discord.Activity(name = "легендарную пыль", type = type)
+    status = discord.Status.dnd
+    await client.change_presence(activity = activity, status = status)
 
 #clear
 @client.command()
