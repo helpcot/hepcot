@@ -309,7 +309,7 @@ async def mute(ctx, amount : int, member: discord.Member = None, role: discord.R
 # Говорить ботом
 
 @client.command()
-@commands.has_permissions(administrator = True)
+@commands.check(is_owner)
 async def say(ctx, *, arg):
 
     await ctx.message.delete()
