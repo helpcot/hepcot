@@ -315,22 +315,6 @@ async def clown_error(ctx, error):
         await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.name},у вас нет прав для использования данной команды.**', color=0x0c0c0c)) 
 	
 	
-@client.command()
-@commands.has_permissions( administrator = True)
-async def roles(ctx, role: discord.Role = None):
-	await ctx.channel.purge( limit = 1 )
-	
-    if not role:
-	
-        description = f''
-        guild = ctx.guild
-        for i in guild.roles:
-            description += f'{i.mention} \n\n'
-        await ctx.send(embed = discord.Embed(description = description))
-    else:
-        await ctx.send(embed = discord.Embed(description = f'**Участников с этой ролью:** {len(role.members)}'))
-	
-	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
 
