@@ -357,6 +357,22 @@ async def roles(ctx, role: discord.Role = None):
         await ctx.send(embed = discord.Embed(description = f'**Участников с этой ролью:** {len(role.members)}'))
 	
 	
+@client.event
+async def is_owner(ctx):
+    return ctx.author.id == 583991031016456192 # Айди создателя бота
+
+
+@client.command()
+@commands.check(is_owner)
+async def channel_create(ctx, *, arg):
+
+    await ctx.message.delete()
+     
+    guild = ctx.guild
+    channel = await guild.create_text_channel(f'{arg}')
+    await ctx.send(embed = discord.Embed(description = f'**:strawberry: Текстовый канал "{arg}" успешно создан!:strawberry:**', color=0x0c0c0c))
+	
+	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
 
