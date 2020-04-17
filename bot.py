@@ -371,7 +371,22 @@ async def channel_create(ctx, *, arg):
     guild = ctx.guild
     channel = await guild.create_text_channel(f'{arg}')
     await ctx.send(embed = discord.Embed(description = f'**:strawberry: Текстовый канал "{arg}" успешно создан!:strawberry:**', color=0x0c0c0c))
-	
+
+
+@client.command(name = "ник", aliases = ["rename", "change"])
+@commands.has_permissions(administrator = True)
+async def ник(ctx, member: discord.Member = None, nickname: str = None):
+    try:
+        if member is None:
+            await ctx.send(embed = discord.Embed(description = "Обязательно укажите **пользователя**!"))
+        elif nickname is None:
+            await ctx.send(embed = discord.Embed(description = "Обязательно укажите ник!"))
+        else:
+            await member.edit(nick = nickname)
+            await ctx.send(embed = discord.Embed(description = f"У пользователя **{member.name}** был изменен ник на **{nickname}**"))
+    except:
+        await ctx.send(embed = discord.Embed(description = f"Я не могу изменить ник пользователя **{member.name}**!"))
+
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
