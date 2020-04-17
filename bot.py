@@ -383,6 +383,8 @@ async def ник(ctx, member: discord.Member = None, nickname: str = None):
 async def say(ctx, *, arg):
 
     await ctx.message.delete()
+
+    await ctx.message.delete()
     await ctx.send(embed = discord.Embed(description = f'{arg}', color=0x0c0c0c))
 
 	
