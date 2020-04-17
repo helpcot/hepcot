@@ -32,8 +32,6 @@ async def clear(ctx,amount : int):
     channel_log = client.get_channel(698638879271420017) #Айди канала логов
 
     await ctx.channel.purge( limit = amount )
-    await ctx.send(embed = discord.Embed(description = f'**:heavy_check_mark: Удалено {amount} сообщений.**', color=0x0c0c0c))
-    await channel_log.send(embed = discord.Embed(description = f'**:wastebasket:  Удалено {amount} сообщений.**', color=0x0c0c0c))
 
 # Работа с ошибками очистки чата
 
