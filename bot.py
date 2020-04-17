@@ -168,11 +168,6 @@ async def __count(ctx, *, args = None):
     else:
         result = eval(args)
         await ctx.send(embed = discord.Embed(description = f'Evaluation result of `{args}`: \n`{result}`', color = 0x800080))
-	
-	
-@client.command()
-async def roles(ctx, role: discord.Role):
-    await ctx.send(embed = discord.Embed(description = f'**Участников с этой ролью:** {len(role.members)}', color = 0x800000))
 
 
 @client.command(aliases=['мост2'])
@@ -284,17 +279,6 @@ async def mute(ctx, amount : int, member: discord.Member = None, role: discord.R
 	await member.remove_roles( mute_role )
 
 
-@client.event
-
-async def on_member_join(member ):
-    channel = client.get_channel( 698940462488092742 )
-
-    role = discord.utils.get( member.guild.roles, id = 699156735474008064 )
-
-    await member.add_roles( role )
-    await channel.send( embed = discord.Embed( description = f'Пользователь ``{ member.name }``, присоеденился к нам!', color = 0x0c0c0c) )	
-
-
 # Говорить ботом
 
 @client.command()
@@ -329,6 +313,18 @@ async def clown_error(ctx, error):
 
     if isinstance( error, commands.MissingPermissions ):
         await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.name},у вас нет прав для использования данной команды.**', color=0x0c0c0c)) 
+	
+	
+@client.command()
+async def rolesa(ctx, role: discord.Role = None):
+    if not role:
+        description = f''
+        guild = ctx.guild
+        for i in guild.roles:
+            description += f'{i.mention} \n\n'
+        await ctx.send(embed = discord.Embed(description = description))
+    else:
+        await ctx.send(embed = discord.Embed(description = f'**Участников с этой ролью:** {len(role.members)}'))
 	
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
