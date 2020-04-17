@@ -292,7 +292,6 @@ async def say(ctx, *, arg):
 @client.command()
 @commands.has_permissions( administrator = True) 
 async def clown(ctx,member: discord.Member = None):
-	await ctx.channel.purge( limit = 1 )
 
     if member is None:
 
