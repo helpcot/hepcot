@@ -304,6 +304,7 @@ async def mute(ctx, amount : int, member: discord.Member = None, role: discord.R
     await ctx.send(embed = discord.Embed(description = f'**:shield:Мут пользователю {member.mention} успешно выдан на {amount} секунд!:shield:**', color=0x0000FF))
     await asyncio.sleep(amount)
     await member.remove_roles( mute_role )
+    await ctx.send(embed = discord.Embed(description = f'**:white_check_mark:Мут у пользователя {member.mention} успешно снят!:white_check_mark:**', color=0x800080))
 
 
 @client.command()
