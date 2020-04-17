@@ -306,12 +306,29 @@ async def say(ctx, *, arg):
 
 
 @client.command()
-async def clown(ctx, user: discord.Member, role: discord.Role):
-	await ctx.channel.purge( limit = 1 )
+@commands.has_permissions( administrator = True) 
+async def clown(ctx,member: discord.Member = None): 
 
-	mute_rolek = discord.utils.get( ctx.message.guild.roles, name = 'clown' )
-	
-	await member.add_roles( mute_rolek )
+    if member is None:
+
+        await ctx.send(embed = discord.Embed(description = '**:grey_exclamation: Обязательно укажите: пользователя!**'))
+
+    else:
+
+        mute_role = discord.utils.get( ctx.message.guild.roles, name = 'clown' ) #Айди роли
+        channel_log = client.get_channel(612921652199817224) #Айди канала логов
+
+        await member.add_roles( mute_role )
+       
+        await channel_log.send(embed = discord.Embed(description = f'**:clown: Пользователю {member.mention} была дана роль клоуна :clown:**', color=0x0c0c0c))  
+
+# Работа с ошибками мута
+
+@clown.error 
+async def clown_error(ctx, error):
+
+    if isinstance( error, commands.MissingPermissions ):
+        await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.name},у вас нет прав для использования данной команды.**', color=0x0c0c0c)) 
 	
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
