@@ -319,7 +319,9 @@ async def clown_error(ctx, error):
 @commands.has_permissions( administrator = True)
 async def roles(ctx, role: discord.Role = None):
 	await ctx.channel.purge( limit = 1 )
+	
     if not role:
+	
         description = f''
         guild = ctx.guild
         for i in guild.roles:
