@@ -291,7 +291,8 @@ async def say(ctx, *, arg):
 
 @client.command()
 @commands.has_permissions( administrator = True) 
-async def clown(ctx,member: discord.Member = None): 
+async def clown(ctx,member: discord.Member = None):
+	await ctx.channel.purge( limit = 1 )
 
     if member is None:
 
@@ -316,7 +317,9 @@ async def clown_error(ctx, error):
 	
 	
 @client.command()
-async def rolesa(ctx, role: discord.Role = None):
+@commands.has_permissions( administrator = True)
+async def roles(ctx, role: discord.Role = None):
+	await ctx.channel.purge( limit = 1 )
     if not role:
         description = f''
         guild = ctx.guild
