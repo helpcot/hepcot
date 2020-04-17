@@ -317,6 +317,9 @@ async def clown_error(ctx, error):
 	
 @client.command()
 async def roles(ctx, role: discord.Role = None):
+
+    await ctx.message.delete()
+    
     if not role:
         description = f''
         guild = ctx.guild
