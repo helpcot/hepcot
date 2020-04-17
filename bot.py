@@ -47,7 +47,7 @@ async def kick(ctx,member: discord.Member = None, reason = None):
 
     else:
 
-        channel_log = client.get_channel(612921652199817224) #Айди канала логов
+        channel_log = client.get_channel(1111111111) #Айди канала логов
 
         await member.kick( reason = reason )
         await ctx.send(embed = discord.Embed(description = f'**:shield: Пользователь {member.mention} был исключен.\n:book: По причине: {reason}**', color=0x0c0c0c))
