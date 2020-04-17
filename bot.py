@@ -33,20 +33,33 @@ async def clear( ctx, amount = 100 ):
 	
 
 #Kick
-@client.command( pass_context = True )
-@commands.has_permissions( administrator = True )
+@client.command()
+@commands.has_permissions( administrator = True) 
+async def kick(ctx,member: discord.Member = None, reason = None): 
 
-async def kick( ctx, member: discord.Member, *, reason = None ):
-	emb = discord.Embed( title = 'Kick', colour = discord.Color.red() )
-	await ctx.channel.purge( limit = 1 )
+    if member is None:
 
-	await member.kick( reason = reason )
+        await ctx.send(embed = discord.Embed(description = '**:grey_exclamation: Обязательно укажите: пользователя!**'))
 
-	emb.set_author( name = member.name, icon_url = member.avatar_url )
-	emb.add_field(name = 'Kick user', value = 'Kicked_Users : {}'.format( member.mention )  )
+    elif reason is None:
 
-	await ctx.send( embed = emb )
+        await ctx.send(embed = discord.Embed(description = '**:grey_exclamation: Обязательно укажите: причину!**'))
 
+    else:
+
+        channel_log = client.get_channel(612921652199817224) #Айди канала логов
+
+        await member.kick( reason = reason )
+        await ctx.send(embed = discord.Embed(description = f'**:shield: Пользователь {member.mention} был исключен.\n:book: По причине: {reason}**', color=0x0c0c0c))
+        await channel_log.send(embed = discord.Embed(description = f'**:shield: Пользователь {member.mention} был исключен.\n:book: По причине: {reason}**', color=0x0c0c0c)) 
+
+# Работа с ошибками кика
+
+@kick.error 
+async def kick_error(ctx, error):
+
+    if isinstance( error, commands.MissingPermissions ):
+        await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.name},у вас нет прав для использования данной команды.**', color=0x0c0c0c))
 	
 
 #ban
