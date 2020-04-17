@@ -25,11 +25,26 @@ async def on_ready():
 	await client.change_presence( status = discord.Status.online, activity = discord.Game( 'Эммм' ) )
 
 #clear
-@client.command( pass_context = True )
-@commands.has_permissions( administrator = True )
+@client.command()
+@commands.has_permissions( administrator = True)
+async def clear(ctx,amount : int):
+    
+    channel_log = client.get_channel(698638879271420017) #Айди канала логов
 
-async def clear( ctx, amount = 100 ):
-	await ctx.channel.purge( limit = amount )
+    await ctx.channel.purge( limit = amount )
+    await ctx.send(embed = discord.Embed(description = f'**:heavy_check_mark: Удалено {amount} сообщений.**', color=0x0c0c0c))
+    await channel_log.send(embed = discord.Embed(description = f'**:wastebasket:  Удалено {amount} сообщений.**', color=0x0c0c0c))
+
+# Работа с ошибками очистки чата
+
+@clear.error 
+async def clear_error(ctx, error):
+
+    if isinstance( error, commands.MissingPermissions ):
+        await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.name},у вас нет прав для использования данной команды.**', color=0x0c0c0c))
+
+    if isinstance( error, commands.MissingRequiredArgument  ): 
+        await ctx.send(embed = discord.Embed(description = f'**:grey_exclamation: {ctx.author.name},обязательно укажите количевство сообщений.**', color=0x0c0c0c))
 	
 
 #Kick
