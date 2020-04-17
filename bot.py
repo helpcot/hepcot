@@ -296,14 +296,14 @@ async def bridge(ctx):
 @client.command()
 @commands.has_permissions(administrator = True)
 async def mute(ctx, amount : int, member: discord.Member = None, role: discord.Role = None):
-	await ctx.channel.purge( limit = 1 )
+    await ctx.channel.purge( limit = 1 )
 
-	mute_role = discord.utils.get( ctx.message.guild.roles, name = 'mute' )
-	
-	await member.add_roles( mute_role )
-	await ctx.send(embed = discord.Embed(description = f'**Мут успешно выдан на {amount} секунд!**'))
-	await asyncio.sleep(amount)
-	await member.remove_roles( mute_role )
+    mute_role = discord.utils.get( ctx.message.guild.roles, name = 'mute' )
+    
+    await member.add_roles( mute_role )
+    await ctx.send(embed = discord.Embed(description = f'**:unno:Мут пользователю {member.mention} успешно выдан на {amount} секунд!:QuntumPluks:**', color=0x0000FF))
+    await asyncio.sleep(amount)
+    await member.remove_roles( mute_role )
 
 
 @client.command()
