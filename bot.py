@@ -318,7 +318,7 @@ async def clown(ctx,member: discord.Member = None):
     else:
 
         mute_role = discord.utils.get( ctx.message.guild.roles, name = 'clown' ) #Айди роли
-        channel_log = client.get_channel(612921652199817224) #Айди канала логов
+        channel_log = client.get_channel(700715508038893630) #Айди канала логов
 
         await member.add_roles( mute_role )
        
