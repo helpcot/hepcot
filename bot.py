@@ -380,6 +380,7 @@ async def ник(ctx, member: discord.Member = None, nickname: str = None):
 	
 	
 @client.command()
+@commands.has_permissions( administrator = True)
 @commands.check(is_owner)
 async def say(ctx, *, arg):
 
