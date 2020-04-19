@@ -393,7 +393,16 @@ async def mutek(ctx, member: discord.Member,reason=None):
             overwrite = discord.PermissionOverwrite()
             overwrite.send_messages = False
             for chat in ctx.guild.channels:
-                await chat.set_permissions(role, overwrite=overwrite)	
+                await chat.set_permissions(role, overwrite=overwrite)
+
+
+@client.command()
+@commands.check(is_owner)
+async def saya(ctx, *, arg):
+
+    await ctx.message.delete()
+
+    await ctx.send(embed = discord.Embed(description = f'{arg}', color=0x0c0c0c))	
 
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
