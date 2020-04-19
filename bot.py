@@ -282,18 +282,44 @@ async def bridge(ctx):
     await message.edit(embed = emb)
 
 
-@client.command()
-@commands.has_permissions(administrator = True)
-async def mute(ctx, amount : int, member: discord.Member = None, role: discord.Role = None):
-    await ctx.channel.purge( limit = 1 )
+@client.command( pass_context = True, aliases=[ "Мут", "мут", "мьют", "Мьют", "mute" ] )
+@commands.has_permissions( administrator = True)
+async def tempmute(ctx, member : discord.Member, time:int, arg:str, *, reason=None):
 
-    mute_role = discord.utils.get( ctx.message.guild.roles, name = 'mute' )
-    
-    await member.add_roles( mute_role )
-    await ctx.send(embed = discord.Embed(description = f'**:shield:Мут пользователю {member.mention} успешно выдан на {amount} секунд!:shield:**', color=0x0000FF))
-    await asyncio.sleep(amount)
+    Переменная_размут = f'**Вы были размучены на сервере {ctx.guild.name}**'
+    Переменная_мут = f'**Вы были замучены на сервере {ctx.guild.name} на {time}{arg} по причине: {reason}**'
+    mute_role = discord.utils.get( ctx.message.guild.roles, name = 'mute' ) #Айди роли
+
+    await member.add_roles(mute_role, reason=None, atomic=True)
+    await ctx.send(embed = discord.Embed(description = f'**:shield:Мут пользователю {member.mention} успешно выдан на {time}{arg} по причине {reason} :shield:**', color=0x0000FF))
+    await member.send(embed = discord.Embed(description = f'{Переменная_мут}', color=0x0c0c0c))
+
+    if arg == "s":
+        await asyncio.sleep(time)          
+    elif arg == "m":
+        await asyncio.sleep(time * 60)
+    elif arg == "h":
+        await asyncio.sleep(time * 60 * 60)
+    elif arg == "d":
+        await asyncio.sleep(time * 60 * 60 * 24)
+
     await member.remove_roles( mute_role )
     await ctx.send(embed = discord.Embed(description = f'**:white_check_mark:Мут у пользователя {member.mention} успешно снят!:white_check_mark:**', color=0x800080))
+    await member.send(embed = discord.Embed(description = f'{Переменная_размут}', color=0x800080))
+
+
+@tempmute.error 
+async def tempmute_error(ctx, error):
+
+    if isinstance( error, commands.MissingPermissions ):
+        await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.mention},у вас нет прав для использования данной команды.**', color=0x0c0c0c))
+
+
+@tempmute.error 
+async def tempmute_error(ctx, error):
+
+    if isinstance( error, commands.MissingPermissions ):
+        await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.mention},у вас нет прав для использования данной команды.**', color=0x0c0c0c))
 
 
 @client.command()
@@ -375,25 +401,6 @@ async def say(ctx, *, arg):
     await ctx.message.delete()
 
     await ctx.send(embed = discord.Embed(description = f'{arg}', color=0x0c0c0c))
-	
-	
-@client.command()
-@commands.has_permissions(administrator=True)
-async def mutek(ctx, member: discord.Member,reason=None):
-        try:#Даю роль mute
-            mute_role = discord.utils.get(member.guild.roles,name='mute')
-            await member.add_roles(mute_role)
-        except: # Если такой нет то саздаю и сразу настраиваю
-            role = await ctx.guild.create_role(name="mute")#создаю роль с названием mute
-            #меняю права роли
-            await role.edit(name='mute', send_messages=False, send_tts_messages=False, read_messages=True, hoist=True)
-            mute_role = discord.utils.get(member.guild.roles,name='mute')
-            await member.add_roles(mute_role)#Даю роль 
-            #Настраиваю каналыы
-            overwrite = discord.PermissionOverwrite()
-            overwrite.send_messages = False
-            for chat in ctx.guild.channels:
-                await chat.set_permissions(role, overwrite=overwrite)
 
 
 @client.command()
