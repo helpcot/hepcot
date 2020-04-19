@@ -182,7 +182,7 @@ async def on_message(message):
     await client.process_commands(message)
     ctx = message.content
     author = message.author
-    channel = message.channel.name
+    channel = message.channel
     print("{0},{1},{2}".format(ctx,author,channel))
 
 
