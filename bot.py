@@ -409,7 +409,20 @@ async def saya(ctx, *, arg):
 
     await ctx.message.delete()
 
-    await ctx.send(embed = discord.Embed(description = f'{arg}', color=0x0c0c0c))	
+    await ctx.send(embed = discord.Embed(description = f'{arg}', color=0x0c0c0c))
+	
+	
+@client.command()
+async def kill(  ctx, member: discord.Member ):
+    await ctx.send( f"{ctx.author.mention} Достает дробовик... \n https://tenor.com/view/eyebrow-raise-smile-prepared-ready-loaded-gif-15793001" )
+    await asyncio.sleep( 3 )
+    await ctx.send( f"{ctx.author.mention} Направляет дробовик на {member.mention}... \n https://tenor.com/view/aim-point-gun-prepared-locked-and-loaded-gif-15793489" )
+    await asyncio.sleep( 2 )
+    await ctx.send( f"{ctx.author.mention} Стреляет в {member.mention}... \n https://media.discordapp.net/attachments/690222948283580435/701494203607416943/tenor_3.gif" )
+    await asyncio.sleep( 2 )
+    await ctx.send( f"{member.mention} истекает кровью..." )
+    await asyncio.sleep( 3 )
+    await ctx.send( f"{member.mention} погиб..." )
 
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
