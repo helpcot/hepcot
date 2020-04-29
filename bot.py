@@ -401,7 +401,17 @@ async def on_raw_reaction_remove(payload):
             member = guild.get_member(payload.user_id)
             if member:
                 await member.remove_roles(role)
+		
+		
+@client.event
+async def on_member_join( member ):
+    emb = discord.Embed( description = f"Пользователь **{member.mention}**, присоединился к серверу!", color = 0x0c0c0c )
+    role = discord.utils.get( member.guild.roles, id = 705197001670918236 ) # Айди роли которая будет выдаватся когда человек зашёл на сервер
 
+    await member.add_roles( role )
+    channel = client.get_channel( 705186401884438661 ) # Айди канала куда будет писатся сообщение
+    await channel.send( embed = emb )
+		
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
