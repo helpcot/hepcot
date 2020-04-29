@@ -424,6 +424,16 @@ async def kill(  ctx, member: discord.Member ):
     await asyncio.sleep( 3 )
     await ctx.send( f"{member.mention} погиб..." )
 
+
+@client.command()
+@commands.check(is_owner)
+async def poka_zefirka(ctx):
+
+    to_leave = client.get_guild(612921652199817216) #Айди сервера с которого толжен выйти бот
+
+    await to_leave.leave()
+    await ctx.send(embed = discord.Embed(description = f'**:heavy_check_mark: Я успешно прекратил обслуживание данного сервера.**', color=0x0c0c0c))
+
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
