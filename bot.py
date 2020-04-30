@@ -386,7 +386,7 @@ async def on_raw_reaction_add(payload):
 
 @client.event
 async def on_raw_reaction_remove(payload):
-    if payload.message_id == 705189158976749568: # ID Сообщения
+    if payload.message_id == 705494295406182451: # ID Сообщения
         guild = client.get_guild(payload.guild_id)
         role = None
 
