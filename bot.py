@@ -486,6 +486,19 @@ async def on_guild_role_delete(role):
         e.add_field(name = "ID удалившего:", value = f"{entry.user.id}")
         await chanel.send(embed=e)
         return
+
+
+@client.command(aliases = ["емодзи", "емоджи", "эмоджи", "эмоция"])
+async def эмодзи(ctx, emoji: discord.Emoji):
+    e = discord.Embed(description = f"[Эмодзи]({emoji.url}) сервера {emoji}")
+    e.add_field(name = "Имя:", value = f"`{emoji.name}`")
+    e.add_field(name = "Автор:", value = f"{(await ctx.guild.fetch_emoji(emoji.id)).user.mention}")
+    e.add_field(name = "‎‎‎‎", value = "‎‎‎‎")
+    e.add_field(name = "Время добавления:", value = f"`{emoji.created_at}`")
+    e.add_field(name = "ID эмодзи:", value = f"`{emoji.id}`")
+    e.add_field(name = "‎‎‎‎", value = "‎‎‎‎")
+    e.set_thumbnail(url = f"{emoji.url}")
+    await ctx.send(embed = e)
 		
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
