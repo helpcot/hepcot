@@ -367,16 +367,22 @@ async def say(ctx, *, arg):
 
 @client.event
 async def on_raw_reaction_add(payload):
-    if payload.message_id == 705494295406182451: # ID Сообщения
+    if payload.message_id == 719269317149196349: # ID Сообщения
         guild = client.get_guild(payload.guild_id)
         role = None
 
-        if str(payload.emoji) == '🐳': # Emoji для реакций
-            role = guild.get_role(705184621087948800) # ID Ролей для выдачи моряк
-        elif str(payload.emoji) == '🐭':
-            role = guild.get_role(705184655279652925)#миш
-        elif str(payload.emoji) == '😜':
-            role = guild.get_role(705184546152513557)#clown
+        if str(payload.emoji) == '🍓': # Emoji для реакций
+            role = guild.get_role(719220991322226848) # ID Ролей для выдачи 【v】【e】【r】【i】【f】【i】【e】【d】
+        elif str(payload.emoji) == '🪓':
+            role = guild.get_role(711220628950220911)#【G】【T】【A】
+        elif str(payload.emoji) == '✈️':
+            role = guild.get_role(694512931546857512)#【D】【a】【y】【Z】
+        elif str(payload.emoji) == '🔮':
+            role = guild.get_role(692861094602997800)#【D】【O】【T】【A】【2】
+        elif str(payload.emoji) == '🌐':
+            role = guild.get_role(692870504935063602)#【C】【s】【G】【o】
+		elif str(payload.emoji) == '❓':
+            role = guild.get_role(683045145817776139)#【q】【u】【b】【e】
 
         if role:
             member = guild.get_member(payload.user_id)
@@ -386,16 +392,22 @@ async def on_raw_reaction_add(payload):
 
 @client.event
 async def on_raw_reaction_remove(payload):
-    if payload.message_id == 705494295406182451: # ID Сообщения
+    if payload.message_id == 719269317149196349: # ID Сообщения
         guild = client.get_guild(payload.guild_id)
         role = None
 
-        if str(payload.emoji) == '🐳': # Emoji для реакций
-            role = guild.get_role(705184621087948800) # ID Ролей для выдачи моряк
-        elif str(payload.emoji) == '🐭':
-            role = guild.get_role(705184655279652925)#миш
-        elif str(payload.emoji) == '😜':
-            role = guild.get_role(705184546152513557)#clown
+        if str(payload.emoji) == '🍓': # Emoji для реакций
+            role = guild.get_role(719220991322226848) # ID Ролей для выдачи 【v】【e】【r】【i】【f】【i】【e】【d】
+        elif str(payload.emoji) == '🪓':
+            role = guild.get_role(711220628950220911)#【G】【T】【A】
+        elif str(payload.emoji) == '✈️':
+            role = guild.get_role(694512931546857512)#【D】【a】【y】【Z】
+        elif str(payload.emoji) == '🔮':
+            role = guild.get_role(692861094602997800)#【D】【O】【T】【A】【2】
+        elif str(payload.emoji) == '🌐':
+            role = guild.get_role(692870504935063602)#【C】【s】【G】【o】
+   		elif str(payload.emoji) == '❓':
+            role = guild.get_role(683045145817776139)#【q】【u】【b】【e】
 
         if role:
             member = guild.get_member(payload.user_id)
@@ -405,12 +417,39 @@ async def on_raw_reaction_remove(payload):
 		
 @client.event
 async def on_member_join( member ):
-    emb = discord.Embed( description = f"Пользователь **{member.mention}**, присоединился к серверу!", color = 0x0c0c0c )
-    role = discord.utils.get( member.guild.roles, id = 705197001670918236 ) # Айди роли которая будет выдаватся когда человек зашёл на сервер
+    emb = discord.Embed( description = f"**:strawberry:Пользователь **{member.mention}**, присоединился к серверу!:strawberry:**", color = 0x0c0c0c )
+    
 
-    await member.add_roles( role )
-    channel = client.get_channel( 705186401884438661 ) # Айди канала куда будет писатся сообщение
+    channel = client.get_channel( 646440966026166282 ) # Айди канала куда будет писаться сообщение
     await channel.send( embed = emb )
+
+
+@client.event
+async def on_member_remove( member ):
+    emb = discord.Embed( description = f"**:x:Пользователь **{member.mention}**, покинул сервер!:x:**", color = 0x0c0c0c )
+    
+
+    channel = client.get_channel( 646440966026166282 ) # Айди канала куда будет писаться сообщение
+    await channel.send( embed = emb )
+
+
+@client.command()
+async def sayqwecccccc( ctx ):
+	emb = discord.Embed( 
+		title = 'Получение ролей',
+		color = 0x7aa13d
+	 )
+
+	emb.add_field( name = '**Нажми на эмодзи для получения роли**', value = '''
+		:strawberry:`---`【v】【e】【r】【i】【f】【i】【e】【d】
+		:axe:`---`【G】【T】【A】
+		:airplane:`---`【D】【a】【y】【Z】
+		:crystal_ball:`---`【D】【O】【T】【A】【2】
+		:globe_with_meridians:`---`【C】【s】【G】【o】
+		:question:`---`【q】【u】【b】【e】
+		''' )
+
+	await ctx.send( embed = emb )
 		
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
