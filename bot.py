@@ -435,6 +435,7 @@ async def sayqwecccccc( ctx ):
 @client.command()
 @commands.has_permissions(administrator = True)
 async def statplay(ctx, *, arg):
+    await ctx.channel.purge( limit = 1 )
     await client.change_presence(activity=discord.Game(name=arg))
     await ctx.send("Изменяем...")
     await ctx.send("Статус бота изменен!")
@@ -443,6 +444,7 @@ async def statplay(ctx, *, arg):
 @client.command()
 @commands.has_permissions(administrator = True)
 async def statwatch(ctx, *, arg):
+    await ctx.channel.purge( limit = 1 )
     await client.change_presence(status=discord.Status.idle, activity=discord.Activity(name=arg, type=discord.ActivityType.watching))
     await ctx.send("Изменяем...")
     await ctx.send("Статус бота изменен!")
@@ -451,6 +453,7 @@ async def statwatch(ctx, *, arg):
 @client.command()
 @commands.has_permissions(administrator = True)
 async def statlisten(ctx, *, arg):
+    await ctx.channel.purge( limit = 1 )
     await client.change_presence(status=discord.Status.idle, activity=discord.Activity(name=arg, type=discord.ActivityType.listening))
     await ctx.send("Изменяем...")
     await ctx.send("Статус бота изменен!")
