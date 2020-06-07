@@ -381,7 +381,7 @@ async def on_raw_reaction_add(payload):
             role = guild.get_role(692861094602997800)#【D】【O】【T】【A】【2】
         elif str(payload.emoji) == '🌐':
             role = guild.get_role(692870504935063602)#【C】【s】【G】【o】
-		elif str(payload.emoji) == '❓':
+        elif str(payload.emoji) == '❓':
             role = guild.get_role(683045145817776139)#【q】【u】【b】【e】
 
         if role:
@@ -406,7 +406,7 @@ async def on_raw_reaction_remove(payload):
             role = guild.get_role(692861094602997800)#【D】【O】【T】【A】【2】
         elif str(payload.emoji) == '🌐':
             role = guild.get_role(692870504935063602)#【C】【s】【G】【o】
-   		elif str(payload.emoji) == '❓':
+        elif str(payload.emoji) == '❓':
             role = guild.get_role(683045145817776139)#【q】【u】【b】【e】
 
         if role:
@@ -447,6 +447,7 @@ async def sayqwecccccc( ctx ):
 		:crystal_ball:`---`【D】【O】【T】【A】【2】
 		:globe_with_meridians:`---`【C】【s】【G】【o】
 		:question:`---`【q】【u】【b】【e】
+
 		''' )
 
 	await ctx.send( embed = emb )
