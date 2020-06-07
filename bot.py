@@ -50,7 +50,6 @@ async def clear_error(ctx, error):
 @client.command()
 @commands.has_permissions( administrator = True) 
 async def kick(ctx,member: discord.Member = None, reason = None): 
-	await ctx.channel.purge( limit = 1 )
 
     if member is None:
 
@@ -62,7 +61,7 @@ async def kick(ctx,member: discord.Member = None, reason = None):
 
     else:
 
-        channel_log = client.get_channel(1111111111) #Айди канала логов
+        channel_log = client.get_channel(710950827786895454) #Айди канала логов
 
         await member.kick( reason = reason )
         await ctx.send(embed = discord.Embed(description = f'**:shield: Пользователь {member.mention} был исключен.\n:book: По причине: {reason}**', color=0x0c0c0c))
