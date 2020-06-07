@@ -50,6 +50,7 @@ async def clear_error(ctx, error):
 @client.command()
 @commands.has_permissions( administrator = True) 
 async def kick(ctx,member: discord.Member = None, reason = None): 
+	await ctx.channel.purge( limit = 1 )
 
     if member is None:
 
@@ -106,29 +107,8 @@ async def unban( ctx, *, member ):
         await ctx.guild.unban( user )
         await ctx.send( f'Unbannded user { user.mention }' )
 
-        return
+        return  
 
-#command help
-@client.command( pass_context = True)
-
-
-async def help( ctx ):
-    emb = discord.Embed( title = 'help', colour = discord.Color.red() )
-    emb = discord.Embed( title = 'Навигация по командам' )
-    
-    emb.add_field( name = '{}roles'.format( PREFIX ), value = 'Посмотерть всех участников заданной роли' )  
-    emb.add_field( name = '{}bridge'.format( PREFIX ), value = 'Мини игра' )    
-    emb.add_field( name = '{}password'.format( PREFIX ), value = 'Сгенерировать пароль' )   
-    emb.add_field( name = '{}mute'.format( PREFIX ), value = 'Выдать мут' )
-    emb.add_field( name = '{}av'.format( PREFIX ), value = 'Посмотреть аватарку пользователя' )
-    emb.add_field( name = '{}clear'.format( PREFIX ), value = 'Очистка чата' )
-    emb.add_field( name = '{}kick'.format( PREFIX ), value = 'Кик Участника' )
-    emb.add_field( name = '{}ban'.format( PREFIX ), value = 'Бан Участника' )
-    emb.add_field( name = '{}unban'.format( PREFIX ), value = 'Разбан Участника' )
-    emb.add_field( name = '{}members'.format( PREFIX ), value = 'Посмотреть Участников Сервера' )
-
-    await ctx.send( embed = emb )
-    
 
 @client.command()
 async def members(ctx):
@@ -288,7 +268,7 @@ async def tempmute(ctx, member : discord.Member, time:int, arg:str, *, reason=No
 
     Переменная_размут = f'**Вы были размучены на сервере {ctx.guild.name}**'
     Переменная_мут = f'**Вы были замучены на сервере {ctx.guild.name} на {time}{arg} по причине: {reason}**'
-    mute_role = discord.utils.get( ctx.message.guild.roles, id = 705190341275549747 )
+    mute_role = discord.utils.get( ctx.message.guild.roles, id = 706584225591066747 )
 
     await member.add_roles(mute_role, reason=None, atomic=True)
     await ctx.send(embed = discord.Embed(description = f'**:shield:Мут пользователю {member.mention} успешно выдан на {time}{arg} по причине {reason} :shield:**', color=0x0000FF))
