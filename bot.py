@@ -281,6 +281,9 @@ async def tempmute(ctx, member : discord.Member, time:int, arg:str, *, reason=No
         await asyncio.sleep(time * 60 * 60)
     elif arg == "d":
         await asyncio.sleep(time * 60 * 60 * 24)
+    elif arg == "y":
+        await asyncio.sleep(time * 60 * 60 * 24 * 365)
+
 
     await member.remove_roles( mute_role )
     await ctx.send(embed = discord.Embed(description = f'**:white_check_mark:Мут у пользователя {member.mention} успешно снят!:white_check_mark:**', color=0x800080))
