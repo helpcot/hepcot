@@ -283,6 +283,8 @@ async def tempmute(ctx, member : discord.Member, time:int, arg:str, *, reason=No
         await asyncio.sleep(time * 60 * 60 * 24)
     elif arg == "y":
         await asyncio.sleep(time * 60 * 60 * 24 * 365)
+    elif arg == "v":
+        await asyncio.sleep(time * 60 * 60 * 24 * 365 * 100)
 
 
     await member.remove_roles( mute_role )
