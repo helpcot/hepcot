@@ -459,6 +459,15 @@ async def statlisten(ctx, *, arg):
     await ctx.send("Статус бота изменен!")
 	
 	
+@client.command()
+@commands.has_permissions(administrator = True)
+async def statstream(ctx, *, arg):
+    await ctx.channel.purge( limit = 1 )
+    await client.change_presence(status=discord.Status.idle, activity=discord.Activity(name=arg, type=discord.ActivityType.streaming))
+    await ctx.send("Изменяем...")
+    await ctx.send("Статус бота изменен!")
+	
+	
 @client.event
 async def on_guild_role_create(role):
     chanel = client.get_channel(710950827786895454)
