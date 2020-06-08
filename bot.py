@@ -573,7 +573,13 @@ async def on_message_edit(before, after):
     emb.set_author(name = 'Журнал аудита | Изменение сообщений', url = emb.Empty, icon_url = 'https://media.discordapp.net/attachments/689879530542071952/711588305506140241/verdict.png?width=407&height=407')
     emb.set_footer(text=f"ID Пользователя: {before.author.id} | ID Сообщения: {before.id}")
     await channel.send(embed=emb)
-    return		
+    return
+
+@client.command()
+@commands.has_permissions(administrator = True)
+async def unmute(ctx, member : discord.Member):
+await ctx.send(embed = discord.Embed(description = f'**:white_check_mark:Мут у пользователя {member.mention} успешно снят!:white_check_mark:**', color=0x800080))
+await member.remove_roles( mute_role )
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
