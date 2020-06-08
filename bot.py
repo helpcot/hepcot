@@ -578,8 +578,9 @@ async def on_message_edit(before, after):
 @client.command()
 @commands.has_permissions(administrator = True)
 async def unmute(ctx, member : discord.Member):
-await ctx.send(embed = discord.Embed(description = f'**:white_check_mark:Мут у пользователя {member.mention} успешно снят!:white_check_mark:**', color=0x800080))
 await member.remove_roles( mute_role )
+await ctx.send(embed = discord.Embed(description = f'**:white_check_mark:Мут у пользователя {member.mention} успешно снят!:white_check_mark:**', color=0x800080))
+
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
