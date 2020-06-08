@@ -601,6 +601,16 @@ async def unmute_error(ctx, error):
         await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.name},у вас нет прав для использования данной команды.**', color=0x0c0c0c))
 
 	
+@client.command( pass_context = True )
+async def fox( ctx ):
+    num = random.randint(1, 122)
+
+    embed = discord.Embed(color = 0xff9900)
+    embed.set_image( url = f'https://randomfox.ca/images/{num}.jpg' )
+
+    await ctx.send( embed = embed )
+
+	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
 
