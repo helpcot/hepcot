@@ -499,7 +499,68 @@ async def эмодзи(ctx, emoji: discord.Emoji):
     e.add_field(name = "‎‎‎‎", value = "‎‎‎‎")
     e.set_thumbnail(url = f"{emoji.url}")
     await ctx.send(embed = e)
-		
+
+
+@client.event
+async def on_guild_role_create(role):
+    chanel = client.get_channel(710950827786895454)
+    async for entry in chanel.guild.audit_logs(limit = 1,action=discord.AuditLogAction.role_create):
+        e = discord.Embed(colour=0x08dfab)
+        e.set_author(name = 'Журнал аудита | создание роли', url = e.Empty, icon_url = 'https://media.discordapp.net/attachments/689879530542071952/711588305506140241/verdict.png?width=407&height=407')
+        e.add_field(name = "Роль:", value = f"<@&{entry.target.id}>")
+        e.add_field(name = "ID роли:", value = f"{entry.target.id}")
+        e.add_field(name = "‎‎‎‎", value = "‎‎‎‎",)
+        e.add_field(name = "Создал:", value = f"{entry.user.mention}")
+        e.add_field(name = "ID создавшего:", value = f"{entry.user.id}")
+        e.add_field(name = "‎‎‎‎", value = "‎‎‎‎")
+        await chanel.send(embed=e)
+        return
+@client.event
+async def on_guild_role_delete(role):
+    chanel = client.get_channel(710950827786895454)
+    async for entry in chanel.guild.audit_logs(action=discord.AuditLogAction.role_delete):
+        e = discord.Embed(colour=0xe84444)
+        e.set_author(name = 'Журнал аудита | удаление роли', url = e.Empty, icon_url = 'https://media.discordapp.net/attachments/689879530542071952/711588305506140241/verdict.png?width=407&height=407')
+        e.add_field(name = "Роль:", value = f"{role.name}")
+        e.add_field(name = "ID роли:", value = f"{entry.target.id}")
+        e.add_field(name = "‎‎‎‎", value = "‎‎‎‎",inline=False)
+        e.add_field(name = "Удалил:", value = f"{entry.user.mention}")
+        e.add_field(name = "ID удалившего:", value = f"{entry.user.id}")
+        await chanel.send(embed=e)
+        return
+
+
+@client.event
+async def on_message_delete(message):
+    channel = client.get_channel(710950827786895454)
+    if message.content is None:
+        return
+    emb = discord.Embed(colour=0xff0000, description=f"{message.author} Удалил сообщение: {message.content} \n в канале {message.channel} \n ",timestamp=message.created_at)
+
+    emb.set_author(name = 'Журнал аудита | Удаление сообщений', url = emb.Empty, icon_url = 'https://media.discordapp.net/attachments/689879530542071952/711588305506140241/verdict.png?width=407&height=407')
+    emb.set_footer(text=f'ID Пользователя: {message.author.id} | ID Сообщения: {message.id}')
+    await channel.send(embed=emb)
+    return
+
+
+@client.event
+async def on_message_edit(before, after):
+    channel = client.get_channel(710950827786895454)
+    if before.author == client.user:
+        return
+    if before.content is None:
+        return
+    elif after.content is None:
+        return
+    emb = discord.Embed(colour=0xFF8000,
+                                 description=f"{before.author} Изменил сообщение в канале {before.channel} "
+                                             f"\n`Старое сообщение`:{before.content}"
+                                             f"\n`Новое сообщение`: {after.content}",timestamp=before.created_at)
+
+    emb.set_author(name = 'Журнал аудита | Изменение сообщений', url = emb.Empty, icon_url = 'https://media.discordapp.net/attachments/689879530542071952/711588305506140241/verdict.png?width=407&height=407')
+    emb.set_footer(text=f"ID Пользователя: {before.author.id} | ID Сообщения: {before.id}")
+    await channel.send(embed=emb)
+    return		
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
