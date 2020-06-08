@@ -535,7 +535,11 @@ async def on_message_delete(message):
     channel = client.get_channel(710950827786895454)
     if message.content is None:
         return
-    emb = discord.Embed(colour=0xff0000, description=f"{message.author} Удалил сообщение: {message.content} \n в канале {message.channel} \n ",timestamp=message.created_at)
+    emb = discord.Embed(colour=0xff0000,
+				description=f"{message.author}"
+    				f"\n Удалил сообщение: `{message.content}`"
+    				f"\n В канале: `{message.channel}`",timestamp=message.created_at)
+
 
     emb.set_author(name = 'Журнал аудита | Удаление сообщений', url = emb.Empty, icon_url = 'https://media.discordapp.net/attachments/689879530542071952/711588305506140241/verdict.png?width=407&height=407')
     emb.set_footer(text=f'ID Пользователя: {message.author.id} | ID Сообщения: {message.id}')
