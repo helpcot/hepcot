@@ -645,6 +645,28 @@ async def on_guild_channel_delete(channel):
     emb.set_footer(text=f"ID канала {channel.id}")
     await get_channel.send(embed=emb)
 
+
+@client.event
+async def on_reaction_add(reaction, user):
+    channel = client.get_channel(710950827786895454)
+    emb = discord.Embed(colour=0x1a000d, description=f"**Поставлена реакция**")
+
+    emb.set_author(name = 'Журнал аудита | Добавление реакций', url = emb.Empty, icon_url = 'https://media.discordapp.net/attachments/689879530542071952/711588305506140241/verdict.png?width=407&height=407')
+    emb.set_footer(text=f"Эмодзи {reaction.emoji}")
+    await channel.send(embed=emb)
+
+
+
+
+@client.event
+async def on_reaction_remove(reaction, user):
+    channel = client.get_channel(710950827786895454)
+    emb = discord.Embed(colour=0x1a111d, description=f"**Удалена реакция**")
+
+    emb.set_author(name = 'Журнал аудита | Удаление реакций', url = emb.Empty, icon_url = 'https://media.discordapp.net/attachments/689879530542071952/711588305506140241/verdict.png?width=407&height=407')
+    emb.set_footer(text=f"Эмодзи {reaction.emoji}")
+    await channel.send(embed=emb)
+
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
