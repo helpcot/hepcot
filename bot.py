@@ -614,6 +614,36 @@ async def fox( ctx ):
     embed.set_image( url = f'https://randomfox.ca/images/{num}.jpg' )
 
     await ctx.send( embed = embed )
+	
+	
+@client.event
+async def on_member_ban(guild, member):
+    channel = client.get_channel(710950827786895454)
+
+    emb = discord.Embed(colour=0xff0001, description=f"**Пользователь `{member.display_name}` был забанен**")
+    emb.set_author(name = 'Журнал аудита | Бан участников', url = emb.Empty, icon_url = 'https://media.discordapp.net/attachments/689879530542071952/711588305506140241/verdict.png?width=407&height=407')
+
+    await channel.send(embed=emb)
+
+
+@client.event
+async def on_guild_channel_create(channel):
+    get_channel = client.get_channel(710950827786895454)
+    emb = discord.Embed(colour=0xff3300, description=f"**Создан текстовый канал под названием `{channel.name}`**")
+
+    emb.set_author(name = 'Журнал аудита | Создание каналов', url = emb.Empty, icon_url = 'https://media.discordapp.net/attachments/689879530542071952/711588305506140241/verdict.png?width=407&height=407')
+    emb.set_footer(text=f"ID канала {channel.id}")
+    await get_channel.send(embed=emb)
+
+
+@client.event
+async def on_guild_channel_delete(channel):
+    get_channel = client.get_channel(710950827786895454)
+    emb = discord.Embed(colour=0x1a000d, description=f"**Удалён текстовый канал под названием `{channel.name}`**")
+
+    emb.set_author(name = 'Журнал аудита | Удаление каналов', url = emb.Empty, icon_url = 'https://media.discordapp.net/attachments/689879530542071952/711588305506140241/verdict.png?width=407&height=407')
+    emb.set_footer(text=f"ID канала {channel.id}")
+    await get_channel.send(embed=emb)
 
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
