@@ -667,6 +667,23 @@ async def on_reaction_remove(reaction, user):
     emb.set_footer(text=f"Эмодзи {reaction.emoji}")
     await channel.send(embed=emb)
 
+
+@client.command( pass_context = True, aliases=[ "даун", "Даун", "клоун", "Клоун", "аут", "Аут"] )
+@commands.has_permissions( administrator = True) 
+async def daun( ctx, member: discord.Member = None):
+    await ctx.channel.purge( limit = 1 )
+    emb = discord.Embed(colour=0x1a111d, description=f'{ctx.author.mention} говорит на ухо {member.mention},что он даун...') 
+    emb.set_author(name = 'обзывалОчка', url = emb.Empty, icon_url = 'https://pngicon.ru/file/uploads/pumba.png')
+    await ctx.send(embed=emb) 
+
+
+@daun.error 
+async def daun(ctx, error):
+
+    if isinstance( error, commands.MissingPermissions ):
+        await ctx.channel.purge( limit = 1 )
+        await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.mention},ты не можешь обзываться**', color=0x0c0c0c))
+
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
