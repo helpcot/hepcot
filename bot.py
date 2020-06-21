@@ -691,16 +691,16 @@ async def dul( ctx, member: discord.Member = None ):
     else:
         a = random.randint(1,2)
         if a == 1:
-            emb = discord.Embed( title = f"Победитель - {ctx.author}", colour = discord.Color.blue())
+            emb = discord.Embed( title = f"Победитель - {ctx.author.mention}", colour = discord.Color.blue())
             await ctx.send( embed = emb )
 
-            emb = discord.Embed( title = f"Проигравший - {member}", colour = discord.Color.red())
+            emb = discord.Embed( title = f"Проигравший - {member.mention}", colour = discord.Color.red())
             await ctx.send( embed = emb )
         else:
-            emb = discord.Embed( title = f"Победитель - {member}", colour = discord.Color.blue())
+            emb = discord.Embed( title = f"Победитель - {member.mention}", colour = discord.Color.blue())
             await ctx.send( embed = emb )
 
-            emb = discord.Embed( title = f"Проигравший - {ctx.author}", colour = discord.Color.red())
+            emb = discord.Embed( title = f"Проигравший - {ctx.author.mention}", colour = discord.Color.red())
             await ctx.send( embed = emb )
 	
 	
