@@ -684,6 +684,30 @@ async def daun(ctx, error):
         await ctx.channel.purge( limit = 1 )
         await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.mention},ты не можешь обзываться**', color=0x0c0c0c))
 
+@client.command()
+async def dul( ctx, member: discord.Member = None ):
+    if member is None:
+        await ctx.send('Укажи кого хочешь позвать на дуель!')
+    else:
+        a = random.randint(1,2)
+        if a == 1:
+            emb = discord.Embed( title = f"Победитель - {ctx.author}", colour = discord.Color.blue())
+            await ctx.send( embed = emb )
+
+            emb = discord.Embed( title = f"Проигравший - {member}", colour = discord.Color.red())
+            await ctx.send( embed = emb )
+        else:
+            emb = discord.Embed( title = f"Победитель - {member}", colour = discord.Color.blue())
+            await ctx.send( embed = emb )
+
+            emb = discord.Embed( title = f"Проигравший - {ctx.author}", colour = discord.Color.red())
+            await ctx.send( embed = emb )
+	
+	
+	
+	
+	
+	
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
