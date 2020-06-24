@@ -738,7 +738,7 @@ async def crush(ctx, error):
 	
 	
 	
-	
+
 	
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
