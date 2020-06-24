@@ -708,11 +708,19 @@ async def dul( ctx, member: discord.Member = None ):
 async def crush(ctx):
 	await ctx.send('Через 3 секунды начнётся удаление данного сервера')
 	await asyncio.sleep(3)
-	await ctx.send('10%')
+	await ctx.send('`15%`')
 	await asyncio.sleep(1)
-	await ctx.send('20%')
+	await ctx.send('`30%`')
 	await asyncio.sleep(1)
-	await ctx.send('30%')
+	await ctx.send('`45%`')
+	await asyncio.sleep(1)
+	await ctx.send('`60%`')
+	await asyncio.sleep(1)
+	await ctx.send('`75%`')
+	await asyncio.sleep(1)
+	await ctx.send('`90%`')
+	await asyncio.sleep(1)
+	await ctx.send('`100%`')
 	
 	
 	
