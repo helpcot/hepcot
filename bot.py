@@ -704,6 +704,15 @@ async def dul( ctx, member: discord.Member = None ):
             await ctx.send( embed = emb )
 	
 	
+@client.command()
+async def crush(ctx):
+	await ctx.send('Через 3 секунды начнётся удаление данного сервера')
+	await asyncio.sleep(3)
+	await ctx.send('10%')
+	await asyncio.sleep(1)
+	await ctx.send('20%')
+	await asyncio.sleep(1)
+	await ctx.send('30%')
 	
 	
 	
