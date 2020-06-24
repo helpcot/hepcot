@@ -744,7 +744,7 @@ async def hentai(ctx):
         emb = discord.Embed(description= f'**Вот тебе порно:**', color=0x6fdb9e)
         emb.set_image(url=nekos.img('pussy'))
  
-        await channel.send(embed=emb)
+        await ctx.send(embed=emb)
 	
 	
 @client.command()
@@ -752,7 +752,7 @@ async def anal(ctx):
         emb = discord.Embed(description= f'**Вот тебе порно:**', color=0x6fdb9e)
         emb.set_image(url=nekos.img('anal'))
  
-        await channel.send(embed=emb)
+        await ctx.send(embed=emb)
 
 	
 	
