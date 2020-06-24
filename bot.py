@@ -351,7 +351,7 @@ async def say(ctx, *, arg):
 
 @client.event
 async def on_raw_reaction_add(payload):
-    if payload.message_id == 720372831107678299: # ID Сообщения
+    if payload.message_id == 725431191095738429: # ID Сообщения
         guild = client.get_guild(payload.guild_id)
         role = None
 
@@ -378,7 +378,7 @@ async def on_raw_reaction_add(payload):
 
 @client.event
 async def on_raw_reaction_remove(payload):
-    if payload.message_id == 720372831107678299: # ID Сообщения
+    if payload.message_id == 725431191095738429: # ID Сообщения
         guild = client.get_guild(payload.guild_id)
         role = None
 
