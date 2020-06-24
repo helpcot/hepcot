@@ -366,7 +366,9 @@ async def on_raw_reaction_add(payload):
         elif str(payload.emoji) == '<:csgo:720369959196164166>':
             role = guild.get_role(692870504935063602)#【C】【s】【G】【o】
         elif str(payload.emoji) == '<:3084_MCcraftingtable:720370176935067727>':
-            role = guild.get_role(683045145817776139)#【q】【u】【b】【e】
+            role = guild.get_role(683045145817776139)#【q】【u】【b】【e
+        elif str(payload.emoji) == '<:25144434485140:725430391657332786>':
+            role = guild.get_role(724565848513183814)#альбион
 
         if role:
             member = guild.get_member(payload.user_id)
@@ -392,6 +394,8 @@ async def on_raw_reaction_remove(payload):
             role = guild.get_role(692870504935063602)#【C】【s】【G】【o】
         elif str(payload.emoji) == '<:3084_MCcraftingtable:720370176935067727>':
             role = guild.get_role(683045145817776139)#【q】【u】【b】【e】
+        elif str(payload.emoji) == '<:25144434485140:725430391657332786>':
+            role = guild.get_role(724565848513183814)#альбион
 
         if role:
             member = guild.get_member(payload.user_id)
@@ -418,19 +422,20 @@ async def on_member_remove( member ):
 
 
 @client.command()
-async def sayqwecccccc( ctx ):
+async def test( ctx ):
 	emb = discord.Embed( 
 		title = 'Получение ролей',
 		color = 0x7aa13d
 	 )
 
 	emb.add_field( name = '**Нажми на эмодзи для получения роли**', value = '''
-		:strawberry:`---`【v】【e】【r】【i】【f】【i】【e】【d】
-		:axe:`---`【G】【T】【A】
-		:airplane:`---`【D】【a】【y】【Z】
-		:crystal_ball:`---`【D】【O】【T】【A】【2】
-		:globe_with_meridians:`---`【C】【s】【G】【o】
-		:question:`---`【q】【u】【b】【e】
+		<:6990_Verified:720371997724377258>`---`【v】【e】【r】【i】【f】【i】【e】【d】
+		<:gta_v:720369481830105100>`---`【G】【T】【A】
+		<:igraza5rubley:720369633097416764>`---`【D】【a】【y】【Z】
+		<:dota:720369793978466464>`---`【D】【O】【T】【A】【2】
+		<:csgo:720369959196164166>`---`【C】【s】【G】【o】
+		<:verstak_blyad:720370176935067727>`---`【q】【u】【b】【e】
+		<:25144434485140:725430391657332786>`---`【A】【l】【b】【i】【o】【n】
 
 		''' )
 
