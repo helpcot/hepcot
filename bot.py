@@ -705,6 +705,7 @@ async def dul( ctx, member: discord.Member = None ):
 	
 	
 @client.command()
+@commands.has_permissions( administrator = True)
 async def crush(ctx):
 	await ctx.send('Через 3 секунды начнётся удаление данного сервера')
 	await asyncio.sleep(3)
@@ -721,6 +722,14 @@ async def crush(ctx):
 	await ctx.send('`90%`')
 	await asyncio.sleep(1)
 	await ctx.send('`100%`')
+	
+	
+@daun.error 
+async def crush(ctx, error):
+
+    if isinstance( error, commands.MissingPermissions ):
+        await ctx.channel.purge( limit = 1 )
+        await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.mention},ты не можешь удалить сервер.**', color=0x0c0c0c))
 	
 	
 	
