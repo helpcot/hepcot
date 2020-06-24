@@ -753,6 +753,15 @@ async def anal(ctx):
         emb.set_image(url=nekos.img('anal'))
  
         await ctx.send(embed=emb)
+	
+	
+@client.command()
+async def woof(ctx):
+        emb = discord.Embed(description= f'**Вот тебе порно:**', color=0x6fdb9e)
+        emb.set_image(url=nekos.img('woof'))
+ 
+        await ctx.send(embed=emb)	
+
 
 	
 	
