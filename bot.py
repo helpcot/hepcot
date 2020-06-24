@@ -365,7 +365,7 @@ async def on_raw_reaction_add(payload):
             role = guild.get_role(692861094602997800)#【D】【O】【T】【A】【2】
         elif str(payload.emoji) == '<:csgo:720369959196164166>':
             role = guild.get_role(692870504935063602)#【C】【s】【G】【o】
-        elif str(payload.emoji) == '<:3084_MCcraftingtable:720370176935067727>':
+        elif str(payload.emoji) == '<:verstak_blyad:720370176935067727>':
             role = guild.get_role(683045145817776139)#【q】【u】【b】【e
         elif str(payload.emoji) == '<:25144434485140:725430391657332786>':
             role = guild.get_role(724565848513183814)#альбион
@@ -392,7 +392,7 @@ async def on_raw_reaction_remove(payload):
             role = guild.get_role(692861094602997800)#【D】【O】【T】【A】【2】
         elif str(payload.emoji) == '<:csgo:720369959196164166>':
             role = guild.get_role(692870504935063602)#【C】【s】【G】【o】
-        elif str(payload.emoji) == '<:3084_MCcraftingtable:720370176935067727>':
+        elif str(payload.emoji) == '<:verstak_blyad:720370176935067727>':
             role = guild.get_role(683045145817776139)#【q】【u】【b】【e】
         elif str(payload.emoji) == '<:25144434485140:725430391657332786>':
             role = guild.get_role(724565848513183814)#альбион
