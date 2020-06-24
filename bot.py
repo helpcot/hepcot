@@ -425,7 +425,7 @@ async def on_member_remove( member ):
 async def test( ctx ):
 	emb = discord.Embed( 
 		title = 'Получение ролей',
-		color = 0x7aa13d
+		color = 0xFF4500
 	 )
 
 	emb.add_field( name = '**Нажми на эмодзи для получения роли**', value = '''
