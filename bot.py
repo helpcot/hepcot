@@ -724,7 +724,7 @@ async def crush(ctx):
 	await ctx.send('`100%`')
 	
 	
-@daun.error 
+@crush.error 
 async def crush(ctx, error):
 
     if isinstance( error, commands.MissingPermissions ):
