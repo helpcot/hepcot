@@ -6,6 +6,8 @@ from discord.utils import get
 import asyncio
 import random as r
 import random
+import nekos
+
 
 
 
@@ -736,6 +738,13 @@ async def crush(ctx, error):
         await ctx.channel.purge( limit = 1 )
         await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.mention},ты не можешь удалить сервер.**', color=0x0c0c0c))
 	
+	
+@client.command()
+async def goose(ctx):
+        emb = discord.Embed(description= f'**Вот тебе гусь:**', color=0x6fdb9e)
+        emb.set_image(url=nekos.img('goose'))
+ 
+        await ctx.send(embed=emb)
 	
 	
 
