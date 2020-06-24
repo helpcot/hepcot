@@ -741,18 +741,20 @@ async def crush(ctx, error):
 	
 @client.command()
 async def hentai(ctx):
+	channel = client.get_channel(725442559765119027)
         emb = discord.Embed(description= f'**Вот тебе порно:**', color=0x6fdb9e)
         emb.set_image(url=nekos.img('pussy'))
  
-        await ctx.send(embed=emb)
+        await channel.send(embed=emb)
 	
 	
 @client.command()
 async def anal(ctx):
+	channel = client.get_channel(725442559765119027)
         emb = discord.Embed(description= f'**Вот тебе порно:**', color=0x6fdb9e)
         emb.set_image(url=nekos.img('anal'))
  
-        await ctx.send(embed=emb)
+        await channel.send(embed=emb)
 
 	
 	
