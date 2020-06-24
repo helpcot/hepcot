@@ -359,7 +359,7 @@ async def on_raw_reaction_add(payload):
             role = guild.get_role(719220991322226848) # ID Ролей для выдачи 【v】【e】【r】【i】【f】【i】【e】【d】
         elif str(payload.emoji) == '<:gta_v:720369481830105100>':
             role = guild.get_role(711220628950220911)#【G】【T】【A】
-        elif str(payload.emoji) == '<:9980_dayz:720369633097416764>':
+        elif str(payload.emoji) == '<:igraza5rubley:720369633097416764>':
             role = guild.get_role(694512931546857512)#【D】【a】【y】【Z】
         elif str(payload.emoji) == '<:2036_dota2:720369793978466464>':
             role = guild.get_role(692861094602997800)#【D】【O】【T】【A】【2】
@@ -386,7 +386,7 @@ async def on_raw_reaction_remove(payload):
             role = guild.get_role(719220991322226848) # ID Ролей для выдачи 【v】【e】【r】【i】【f】【i】【e】【d】
         elif str(payload.emoji) == '<:gta_v:720369481830105100>':
             role = guild.get_role(711220628950220911)#【G】【T】【A】
-        elif str(payload.emoji) == '<:9980_dayz:720369633097416764>':
+        elif str(payload.emoji) == '<:igraza5rubley:720369633097416764>':
             role = guild.get_role(694512931546857512)#【D】【a】【y】【Z】
         elif str(payload.emoji) == '<:2036_dota2:720369793978466464>':
             role = guild.get_role(692861094602997800)#【D】【O】【T】【A】【2】
