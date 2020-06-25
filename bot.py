@@ -136,7 +136,7 @@ async def av(ctx, member : discord.Member = None):
 async def password(ctx, lenght: int = None, number: int = None):
 
     if not lenght or not number:
-        await ctx.send(embed = discord.Embed(description = f'Пожалуйста, укажите длину пароля и количество символов в нем.', color=0x0c0c0c)) 
+        await ctx.author.send(embed = discord.Embed(description = f'Пожалуйста, укажите длину пароля и количество символов в нем.', color=0x0c0c0c))
 
     chars = 'abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
     for x in range(number):
@@ -145,7 +145,8 @@ async def password(ctx, lenght: int = None, number: int = None):
         for i in range( lenght ):
             password += random.choice(chars)
 
-        await ctx.send(embed = discord.Embed(description = f'Сгенерированный пароль:\n{password}', color=0x00FFFF)) 
+        await ctx.author.send(embed = discord.Embed(description = f'Сгенерированный пароль:\n{password}', color=0x00FFFF)) 
+        await ctx.send('**`Пароль отправлен вам в лс`**')
         return
 
 
