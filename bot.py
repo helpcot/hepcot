@@ -329,7 +329,7 @@ async def channel_create(ctx, *, arg):
 
 @client.command(name = "ник", aliases = ["rename", "change"])
 @commands.has_permissions(administrator = True)
-async def ник(ctx, member: discord.Member = None, nickname: str = None):
+async def ник(ctx, member: discord.Member = None, *, nickname: str = None):
     try:
         if member is None:
             await ctx.send(embed = discord.Embed(description = "Обязательно укажите **пользователя**!"))
