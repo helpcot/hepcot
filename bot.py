@@ -760,13 +760,22 @@ async def woof(ctx):
         emb = discord.Embed(description= f'**Вот твоя собака:**', color=0x6fdb9e)
         emb.set_image(url=nekos.img('woof'))
  
+        await ctx.send(embed=emb)
+
+
+@client.command()
+async def tits(ctx):
+        emb = discord.Embed(description= f'**Вот твоя собака:**', color=0x6fdb9e)
+        emb.set_image(url=nekos.img('tits'))
+ 
         await ctx.send(embed=emb)	
 
 
-	
-	
 
-	
+
+
+
+
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
 client.run(str(token)) # запускаем бота
 
