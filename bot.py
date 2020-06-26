@@ -272,9 +272,6 @@ async def bridge(ctx):
 @commands.has_role(722489643404099748)
 @commands.has_role(684029709776060470)
 @commands.has_role(658729994163453964)
-
-
-
 async def tempmute(ctx, member : discord.Member, time:int, arg:str, *, reason=None):
 
     Переменная_размут = f'**Вы были размучены на сервере {ctx.guild.name}**'
