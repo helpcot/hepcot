@@ -263,9 +263,9 @@ async def bridge(ctx):
         emb.add_field(name='Итог:', value =f'{rin}')
     await message.edit(embed = emb)
 
-bav = 703610603666931772, 683047005555392552, 714242648226922600, 722489643404099748, 684029709776060470, 658729994163453964
+bav = discord.utils.get(member.guild.roles, id = 658729994163453964) #Айди роли
 @client.command( pass_context = True, aliases=[ "Мут", "мут", "мьют", "Мьют", "mute" ] )
-@commands.has_role(GOLOVA)
+@commands.has_role(bav)
 async def tempmute(ctx, member : discord.Member, time:int, arg:str, *, reason=None):
 
     Переменная_размут = f'**Вы были размучены на сервере {ctx.guild.name}**'
