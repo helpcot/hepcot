@@ -265,12 +265,6 @@ async def bridge(ctx):
 
 
 @client.command( pass_context = True, aliases=[ "Мут", "мут", "мьют", "Мьют", "mute" ] )
-@commands.has_role('GOLOVA')
-@commands.has_role('хуёвая роль')
-@commands.has_role('Прохор')
-@commands.has_role('Шизоиды')
-@commands.has_role('павук')
-@commands.has_role('Собака Сутулая')
 async def tempmute(ctx, member : discord.Member, time:int, arg:str, *, reason=None):
 
     Переменная_размут = f'**Вы были размучены на сервере {ctx.guild.name}**'
