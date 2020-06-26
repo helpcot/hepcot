@@ -265,7 +265,6 @@ async def bridge(ctx):
 
 
 @client.command( pass_context = True, aliases=[ "Мут", "мут", "мьют", "Мьют", "mute" ] )
-@commands.has_permissions( administrator = True)
 @commands.has_role(703610603666931772)
 @commands.has_role(683047005555392552)
 @commands.has_role(714242648226922600)
