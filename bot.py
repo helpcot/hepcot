@@ -808,6 +808,12 @@ async def сказать(ctx, member: discord.Member = None, *, reason=None):
     await member.send(embed=emb)
 
 
+@client.command()
+async def qaa(ctx, member: discord.Member = None, *, reason=None):
+    emb = discord.Embed(description= f'**<:ventilytor:703650185204465714><:ventilytor:703650185204465714><:ventilytor:703650185204465714>{reason}<:ventilytor:703650185204465714><:ventilytor:703650185204465714><:ventilytor:703650185204465714>**', color=0x6fdb9e)
+    await member.send(embed=emb)
+
+
 
 
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
