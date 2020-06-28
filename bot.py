@@ -801,6 +801,13 @@ async def ahelp(ctx):
     await ctx.send('**`Команды отправлены вам в лс`**')
 
 
+@client.command()
+async def сказать(ctx, member: discord.Member = None, *, reason=None):
+    await ctx.channel.purge( limit = 1 )
+    emb = discord.Embed(description= f'**<:ventilytor:703650185204465714><:ventilytor:703650185204465714><:ventilytor:703650185204465714>{reason}<:ventilytor:703650185204465714><:ventilytor:703650185204465714><:ventilytor:703650185204465714>**', color=0x6fdb9e)
+    await member.send(embed=emb)
+
+
 
 
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
