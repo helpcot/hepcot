@@ -802,16 +802,22 @@ async def ahelp(ctx):
 
 
 @client.command()
+@commands.has_permissions( administrator = True)
 async def сказать(ctx, member: discord.Member = None, *, reason=None):
     await ctx.channel.purge( limit = 1 )
     emb = discord.Embed(description= f'**<:ventilytor:703650185204465714><:ventilytor:703650185204465714><:ventilytor:703650185204465714>{reason}<:ventilytor:703650185204465714><:ventilytor:703650185204465714><:ventilytor:703650185204465714>**', color=0x6fdb9e)
     await member.send(embed=emb)
 
 
-@client.command()
-async def qaa(ctx, member: discord.Member = None, *, reason=None):
-    emb = discord.Embed(description= f'**<:ventilytor:703650185204465714><:ventilytor:703650185204465714><:ventilytor:703650185204465714>{reason}<:ventilytor:703650185204465714><:ventilytor:703650185204465714><:ventilytor:703650185204465714>**', color=0x6fdb9e)
-    await member.send(embed=emb)
+@сказать.error 
+async def сказать(ctx, error):
+
+    if isinstance( error, commands.MissingPermissions ):
+        await ctx.channel.purge( limit = 1 )
+        await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.mention},пасаси.**', color=0x0c0c0c))
+
+
+
 
 
 
