@@ -815,6 +815,14 @@ async def сказать(ctx, error):
     if isinstance( error, commands.MissingPermissions ):
         await ctx.channel.purge( limit = 1 )
         await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.mention},пасаси.**', color=0x0c0c0c))
+	
+	
+@client.event
+async def on_message(message):
+    emojis = '🇵🇮🇿🇩🇪🇨'#тут эмодзи
+    if message.author.id == 402151598039629824:#Вместо знаков `?` ставь id пользователя
+        for em in emojis:
+            await message.add_reaction(em)
 
 
 
