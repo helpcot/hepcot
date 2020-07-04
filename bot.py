@@ -46,35 +46,7 @@ async def clear_error(ctx, error):
 
     if isinstance( error, commands.MissingRequiredArgument  ): 
         await ctx.send(embed = discord.Embed(description = f'**:grey_exclamation: {ctx.author.name},обязательно укажите количевство сообщений.**', color=0x0c0c0c))
-    
-
-#Kick
-@client.command()
-@commands.has_permissions( administrator = True) 
-async def kick(ctx,member: discord.Member = None, reason = None): 
-
-    if member is None:
-
-        await ctx.send(embed = discord.Embed(description = '**:grey_exclamation: Обязательно укажите: пользователя!**'))
-
-    elif reason is None:
-
-        await ctx.send(embed = discord.Embed(description = '**:grey_exclamation: Обязательно укажите: причину!**'))
-
-    else:
-
-        channel_log = client.get_channel(710950827786895454) #Айди канала логов
-
-		await member.kick( reason = reason )
-		await channel_log.send(embed = discord.Embed(description = f'**:shield: Пользователь {member.mention} был исключен.\n:book: По причине: {reason}**', color=0x0c0c0c)) 
-
-# Работа с ошибками кика
-
-@kick.error 
-async def kick_error(ctx, error):
-
-    if isinstance( error, commands.MissingPermissions ):
-        await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.name},у вас нет прав для использования данной команды.**', color=0x0c0c0c))
+   
     
 
 #ban
