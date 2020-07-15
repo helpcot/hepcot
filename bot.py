@@ -61,7 +61,7 @@ async def ban(ctx, member: discord.Member, *, reason = None):
 	dm_msg=discord.Embed(description=f"Вы были забанены на сервере {ctx.guild.name}, модератором {ctx.author.mention}, по причине: {reason}")
 	if reason is None:
 		reason="Не указана"
-	await member.ban(member, reason=reason)
+	await ctx.guild.ban(member, reason=reason)
 	await ctx.send(embed=guild_msg)
 	await member.send(embed=dm_msg)
 
