@@ -48,21 +48,22 @@ async def clear_error(ctx, error):
         await ctx.send(embed = discord.Embed(description = f'**:grey_exclamation: {ctx.author.name},обязательно укажите количевство сообщений.**', color=0x0c0c0c))
    
     
-
-#ban
-@client.command( pass_context = True )
-@commands.has_permissions( administrator = True )
-
-async def ban( ctx, member: discord.Member, *, reason = None ):
-    emb = discord.Embed( title = 'Ban', colour = discord.Color.red() )
-    await ctx.channel.purge( limit = 1 )
-
-    await member.ban( reason = reason )
-
-    emb.set_author( name = member.name, icon_url = member.avatar_url )
-    emb.add_field(name = 'Ban user', value = 'Banned_Users : {}'.format( member.mention )  )
-
-    await ctx.send( embed = emb )
+@client.command()
+@commands.has_permissions( administrator = True)
+async def ban(ctx, member: discord.Member, *, reason = None):
+	if member.id == ctx.author.id:
+		return await ctx.send("ты даун?")
+	if member.id == ctx.guild.owner.id:
+		return await ctx.send("Я не буду банить создателя сервера...")
+	if ctx.author.top_role.position < member.top_role.position:
+		return await ctx.send("Я не буду банить человека который выше тебя по должности!")
+	guild_msg=discord.Embed(description=f"{ctx.author.mention} забанил участника {member.mention} по причине: {reason}")
+	dm_msg=discord.Embed(description=f"Вы были забанены на сервере {ctx.guild.name}, модератором {ctx.author.mention}, по причине: {reason}")
+	if reason is None:
+		reason="Не указана"
+	await member.ban(member, reason=reason)
+	await ctx.send(embed=guild_msg)
+	await member.send(embed=dm_msg)
 
 
 #unban
