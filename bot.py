@@ -724,26 +724,34 @@ async def hentai(ctx):
 	
 @client.command()
 async def anal(ctx):
-        emb = discord.Embed(description= f'**Вот тебе порно:**', color=0x6fdb9e)
-        emb.set_image(url=nekos.img('anal'))
+	channel = client.get_channel(725442559765119027)
+	emb = discord.Embed(description= f'**Вот тебе порно:**', color=0x6fdb9e)
+	emb.set_image(url=nekos.img('anal'))
  
-        await ctx.send(embed=emb)
+	await channel.send(embed=emb)
+	await ctx.send("Фотка отправлена в канал #задние-парты")
 	
 	
 @client.command()
 async def woof(ctx):
-        emb = discord.Embed(description= f'**Вот твоя собака:**', color=0x6fdb9e)
-        emb.set_image(url=nekos.img('woof'))
+	channel = client.get_channel(725442559765119027)
+	emb = discord.Embed(description= f'**Вот твоя собака:**', color=0x6fdb9e)
+	emb.set_image(url=nekos.img('woof'))
  
-        await ctx.send(embed=emb)
+	await channel.send(embed=emb)
+	await ctx.send("Фотка отправлена в канал #задние-парты")
 
 
 @client.command()
 async def tits(ctx):
-        emb = discord.Embed(description= f'**Вот твоё порно:**', color=0x6fdb9e)
-        emb.set_image(url=nekos.img('tits'))
+	channel = client.get_channel(725442559765119027)
+	emb = discord.Embed(description= f'**Вот твоё порно:**', color=0x6fdb9e)
+	emb.set_image(url=nekos.img('tits'))
+	
+	await channel.send(embed=emb)
+	await ctx.send("Фотка отправлена в канал #задние-парты")
  
-        await ctx.send(embed=emb)	
+	
 
 
 @client.command()
