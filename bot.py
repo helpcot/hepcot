@@ -16,7 +16,7 @@ PREFIX = '/'
 
 
 
-client = commands.Bot( command_prefix = PREFIX )
+client = commands.Bot( command_prefix=getprefix, pm_help = True )
 client.remove_command( 'help' )
 
 
@@ -819,7 +819,6 @@ async def updprefix(servid, newprefix):
     with open('prefixes.json', 'w') as f:
         json.dump(prefixes, f)
 
-client = commands.Bot( command_prefix=getprefix, pm_help = True )
 
 @client.command()
 async def prefix(ctx, prfx=None):
