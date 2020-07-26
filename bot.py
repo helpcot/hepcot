@@ -830,6 +830,18 @@ async def prefix(ctx, prfx=None):
         else:
             await ctx.send("Пожалуйста введите префикс")
 	
+@commands.command(name="вебхук", description="Сообщения от вебхука", usage="вебхук [текст]",aliases=["webhook"]) # декоратор, говорящий боту, что создана команда
+async def send_webhook(ctx, *, text=None):
+	channel = self.client.get_channel(id=int(ctx.channel.id))
+	async with aiohttp.ClientSession() as session:
+		webhook = await channel.create_webhook(name=f"{ctx.author.name}", reason=None)
+		e = discord.Embed(description=f"{text}", color=0x2f3136)
+	if ctx.message.attachments:
+		e.set_image(url=ctx.message.attachments[0].proxy_url)
+		await webhook.send(embed = e, username=f'{ctx.author.name}', avatar_url = f"{ctx.author.avatar_url}")
+		await ctx.message.delete()
+		await webhook.delete()
+	
 
 
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
