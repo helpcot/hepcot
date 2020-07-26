@@ -14,7 +14,24 @@ import json
 
 PREFIX = '/'
 
+default_prfx = '/'
 
+async def getprefix(bot, message):
+    with open('prefixes.json') as f:
+        prefixes = json.load(f)
+    servid = str(message.guild.id)
+    return prefixes.get(servid, default_prfx)
+
+async def updprefix(servid, newprefix):
+    newjson = {servid: str(newprefix)}
+    with open('prefixes.json') as f:
+        prefixes = json.load(f)
+    if prefixes.get(str(servid)) == None:
+        prefixes.update(newjson)
+    else:
+        prefixes[str(servid)] = newprefix
+    with open('prefixes.json', 'w') as f:
+        json.dump(prefixes, f)
 
 client = commands.Bot( command_prefix=getprefix, pm_help = True )
 client.remove_command( 'help' )
@@ -799,25 +816,6 @@ async def сказать(ctx, error):
         await ctx.channel.purge( limit = 1 )
         await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.mention},пасаси.**', color=0x0c0c0c))
 	
-
-default_prfx = '/'
-
-async def getprefix(bot, message):
-    with open('prefixes.json') as f:
-        prefixes = json.load(f)
-    servid = str(message.guild.id)
-    return prefixes.get(servid, default_prfx)
-
-async def updprefix(servid, newprefix):
-    newjson = {servid: str(newprefix)}
-    with open('prefixes.json') as f:
-        prefixes = json.load(f)
-    if prefixes.get(str(servid)) == None:
-        prefixes.update(newjson)
-    else:
-        prefixes[str(servid)] = newprefix
-    with open('prefixes.json', 'w') as f:
-        json.dump(prefixes, f)
 
 
 @client.command()
