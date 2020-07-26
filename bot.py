@@ -811,7 +811,7 @@ async def printer():
 			async with session.post(f'https://api.server-discord.com/v2/bots/{botid}/stats', json={"servers": guildscount, "shards": shards}) as response:
 				js = await response.json()
 		await asyncio.sleep( 4 )
-			print("[LOGS </>] [+] Guild list is loaded!")
+		print("[LOGS </>] [+] Guild list is loaded!")
 		except Exception as e:
 			await asyncio.sleep( 4 )
 				print(e)
