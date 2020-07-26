@@ -807,8 +807,8 @@ async def printer():
 		token = os.environ.get('BOT_TOKEN')
 		botid = "719245657868730421"
 		headers={"Authorization": token}
-async with aiohttp.ClientSession(headers=headers) as session:
-async with session.post(f'https://api.server-discord.com/v2/bots/{botid}/stats', json={"servers": guildscount, "shards": shards}) as response:
+		async with aiohttp.ClientSession(headers=headers) as session:
+		async with session.post(f'https://api.server-discord.com/v2/bots/{botid}/stats', json={"servers": guildscount, "shards": shards}) as response:
 		js = await response.json()
 		await asyncio.sleep( 4 )
 			print("[LOGS </>] [+] Guild list is loaded!")
