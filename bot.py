@@ -801,8 +801,7 @@ async def сказать(ctx, error):
 	
 
 default_prfx = '/'
-@client.command()
-@commands.has_permissions( administrator = True)
+
 async def getprefix(bot, message):
     with open('prefixes.json') as f:
         prefixes = json.load(f)
@@ -820,7 +819,7 @@ async def updprefix(servid, newprefix):
     with open('prefixes.json', 'w') as f:
         json.dump(prefixes, f)
 
-client = Bot( command_prefix=getprefix, pm_help = True)
+client = commands.Bot( command_prefix=getprefix, pm_help = True )
 
 @client.command()
 async def prefix(ctx, prfx=None):
