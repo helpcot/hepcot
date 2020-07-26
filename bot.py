@@ -799,6 +799,25 @@ async def сказать(ctx, error):
         await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.mention},пасаси.**', color=0x0c0c0c))
 	
 	
+@tasks.loop(minutes=30)
+async def printer():
+	try:
+		guildscount = str(len(self.client.guilds))
+		shards = "1"
+		token = os.environ.get('BOT_TOKEN')
+		botid = "719245657868730421"
+		headers={"Authorization": token}
+async with aiohttp.ClientSession(headers=headers) as session:
+async with session.post(f'https://api.server-discord.com/v2/bots/{botid}/stats', json={"servers": guildscount, "shards": shards}) as response:
+		js = await response.json()
+		await asyncio.sleep( 4 )
+			print("[LOGS </>] [+] Guild list is loaded!")
+		except Exception as e:
+			await asyncio.sleep( 4 )
+				print(e)
+
+	
+	
 
 
 
