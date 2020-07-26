@@ -39,7 +39,6 @@ client.remove_command( 'help' )
 
 @client.event
 async def on_ready(*args):
-    client.loop.create_task(rainbowrole(rainbowrolename))
     print ( 'Бот Подключён!Можно работать.' )
     type = discord.ActivityType.listening
     activity = discord.Activity(name = "легендарную пыль", type = type)
