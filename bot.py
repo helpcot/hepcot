@@ -818,6 +818,6 @@ async def printer():
 
 
 
-token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
-client.run(str(token)) # запускаем бота
+	token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
+	client.run(str(token)) # запускаем бота
 
