@@ -14,26 +14,7 @@ import json
 
 PREFIX = '/'
 
-default_prfx = '/'
-
-async def getprefix(bot, message):
-    with open('prefixes.json') as f:
-        prefixes = json.load(f)
-    servid = str(message.guild.id)
-    return prefixes.get(servid, default_prfx)
-
-async def updprefix(servid, newprefix):
-    newjson = {servid: str(newprefix)}
-    with open('prefixes.json') as f:
-        prefixes = json.load(f)
-    if prefixes.get(str(servid)) == None:
-        prefixes.update(newjson)
-    else:
-        prefixes[str(servid)] = newprefix
-    with open('prefixes.json', 'w') as f:
-        json.dump(prefixes, f)
-
-client = commands.Bot( command_prefix=getprefix, pm_help = True )
+client = commands.Bot( command_prefix=PREFIX )
 client.remove_command( 'help' )
 
 
@@ -817,18 +798,6 @@ async def сказать(ctx, error):
         await ctx.send(embed = discord.Embed(description = f'**:exclamation: {ctx.author.mention},пасаси.**', color=0x0c0c0c))
 	
 
-
-@client.command()
-async def prefix(ctx, prfx=None):
-    if ctx.author.guild_permissions.administrator:
-        if prfx != None:
-            if len(prfx) < 4:
-                await updprefix(ctx.guild.id, prfx)
-                await ctx.send(f"Префикс изменен на: {prfx}")
-            else:
-                await ctx.send("Префикс не может быть больше чем 3 симбола")
-        else:
-            await ctx.send("Пожалуйста введите префикс")
 	
 
 token = os.environ.get('BOT_TOKEN') # Получаем токен с heroku который ты указывал в настройках
