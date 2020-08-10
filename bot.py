@@ -54,7 +54,7 @@ async def ban(ctx, member: discord.Member, *, reason = None):
 		return await ctx.send("ты даун?")
 	if member.id == ctx.guild.owner.id:
 		return await ctx.send("Я не буду банить создателя сервера...")
-	if ctx.author.top_role.position < member.top_role.position:
+	if ctx.author.top_role.position <= member.top_role.position:
 		return await ctx.send("Я не буду банить человека который выше тебя по должности!")
 	guild_msg=discord.Embed(description=f"{ctx.author.mention} забанил участника {member.mention} по причине: {reason}")
 	dm_msg=discord.Embed(description=f"Вы были забанены на сервере {ctx.guild.name}, модератором {ctx.author.mention}, по причине: {reason}")
