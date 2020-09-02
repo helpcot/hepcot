@@ -395,27 +395,7 @@ async def on_member_remove( member ):
     await channel.send( embed = emb )
 
 
-@client.command()
-async def test( ctx ):
-	emb = discord.Embed( 
-		title = 'Получение ролей',
-		color = 0xFF4500
-	 )
 
-	emb.add_field( name = '**Нажми на эмодзи для получения роли**', value = '''
-		<:6990_Verified:720371997724377258>`---`【v】【e】【r】【i】【f】【i】【e】【d】
-		<:gta_v:720369481830105100>`---`【G】【T】【A】
-		<:igraza5rubley:720369633097416764>`---`【D】【a】【y】【Z】
-		<:dota:720369793978466464>`---`【D】【O】【T】【A】【2】
-		<:csgo:720369959196164166>`---`【C】【s】【G】【o】
-		<:verstak_blyad:720370176935067727>`---`【q】【u】【b】【e】
-		<:25144434485140:725430391657332786>`---`【A】【l】【b】【i】【o】【n】
-
-		''' )
-
-	await ctx.send( embed = emb )
-	
-	
 @client.command()
 @commands.has_permissions(administrator = True)
 async def statplay(ctx, *, arg):
